@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-project.component.scss']
 })
 export class CreateProjectComponent {
-
+  isStatus : boolean =  true;
 }

@@ -62,7 +62,29 @@ $screen-xl: 1400px;
 //   color: $color-primary;
 // }
 
-@import 
-"../src/scss/base.scss",
-"../src/scss/sidebar.scss",
-"../src/scss/utility.scss";
+$focus-color: #737373;
+@mixin border-style {
+    outline: 2px dotted $focus-color !important;
+    outline-offset: 4px;
+}
+
+
+a,
+button,
+input,
+select,
+lightning-textarea textarea {
+    &:focus,
+    &:active {
+        @include border-style;
+    }
+    @media only screen and (max-width: 1023px) {
+        &:hover {
+            @include border-style;
+        }
+    }
+}
+
+h1 , p , h2{
+    color: $ux_default-text;
+}

@@ -1,8 +1,19 @@
 
 .text-primary {
-      color: $color-primary;
+      color: $ux_primary-color;
 }
 
 .bg-primary{
   background-color: $ux_primary-color;
+}
+
+.card{
+  box-shadow: 0px 2px 4px 0px #0000001A;
+  border-radius: 4px;
+  background-color: $ux_white;
+  padding: 18px 24px;
+}
+
+.color-success {
+  color : #22B783
 }

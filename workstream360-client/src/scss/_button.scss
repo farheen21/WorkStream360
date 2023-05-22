@@ -1,0 +1,37 @@
+@mixin ux-button {
+    color: $ux_white;
+    border-radius: 4px;
+  }
+  
+  .primary-button { 
+    @include ux-button;
+    background-color: $ux_primary-color; 
+    border: $ux_primary-color;
+   }
+
+
+  .secondary-button { 
+     @include ux-button;
+     color: $ux_primary-color;
+     background-color: $ux_white; 
+     border: 1px solid $ux_primary-color;
+  }
+  .warning-button { 
+    @include ux-button;
+    background-color: $ux_warning; 
+  }
+
+  .info-button { 
+    @include ux-button;
+    background-color: $ux_secondary-text;
+  }
+
+  .dark-button {
+    @include ux-button;
+    background-color: $ux_primary-dark;
+  }
+  .light-button { 
+    @include ux-button;
+    background-color: $ux_light;
+  }
+
