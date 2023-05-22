@@ -8,69 +8,8 @@
 
 // @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
-/*Color Codes*/
-$ux_bg: #E5E5E5;
-$ux_default-text: #303E67;
-$ux_secondary-text: #63729A;
-$ux_white: #ffffff;
-
-$ux_primary-color: #0B51B7;
-$ux_secondary-color: #2A76F4;
-
-
-
-$ux_fill: #f1f5fa;
-$ux_primary-dark: #0D1D35;  
-$ux_disabled: #F1F5FA;
-
-// $ux_link: #3a86ff;
-$ux_success: #22B783;
-$ux_error: #D13A3A;
-$ux_warning: #FF9F43;
-$ux_light : #EDF0F4;
-
-
-$ux_table_border : #EAF0F7;
-$ux_input-border : #010205;
-$ux_backdrop_bg : #071427;
-
-// $ux_light_gray-1: #F1F1F5;
-// $ux_light_gray-2: #DFE0E2;
-// $ux_dark_gray-1: #656565;
-
-// $ux_border: #a5c3e4;
-// $ux_primary-hover: #215FAB;
-
-
-
-
-/*Fonts*/
-
-$ux_font: 'Inter', sans-serif;;
-$ux_headingfont: 'Work Sans', sans-serif;
-
-/*Screen Size*/
-$screen-xsm: 400px;
-$screen-xs: 480px;
-$screen-sm: 768px;
-$screen-sm-min: $screen-sm - 1px;
-$screen-sm-max: $screen-sm + 1px;
-$screen-sm-ls: 1024px;
-$screen-sm-ls-min: $screen-sm-ls - 1px;
-$screen-sm-ls-max: $screen-sm-ls + 1px;
-$screen-md: 991px;
-$screen-lg: 1200px;
-$screen-lg-min: $screen-lg - 1px;
-$screen-xl: 1400px;
-
-
-
-
-
-// h1,p,ul,li,
-// .text-primary {
-//   color: $color-primary;
-// }
 
 @import 
-"../src/scss/sidebar.scss";
+"../src/scss/base";
+
+

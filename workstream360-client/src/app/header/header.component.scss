@@ -2,5 +2,20 @@
 .header{
     height: 60px;
     box-shadow: 0px 0px 4px 0px #00000026;
-    grid-template-columns: 4fr 1.6fr
+    grid-template-columns: 4fr 1.6fr;
+
+
+    padding: 0 1.5rem;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+	position: fixed;
+    z-index: 99;
+	top: 0;
+	// .slds-dropdown-trigger button{
+	// 	line-height: unset;
+	// }
+	// &>.slds-grid{
+	// 	height: 100%;
+	// }
 }
+
+

@@ -138,3 +138,30 @@
 .margin-btm{
     margin-bottom: 50px !important;
 }
+
+#main-content-0{
+	.slds-col--padded, .cWslayout, .cb-section_column{
+		padding: 2rem !important;
+		margin-top: 60px;
+	}
+
+	.heading-block{
+		.page-heading{
+			line-height: 1.5rem;
+			font-weight: 600;
+			font-size: 20px;
+			font-family: $ux_font;
+		}
+		.links-section{
+			margin-top: 4px;
+			a{
+				text-decoration: none;
+				&.current{
+					color: $ux_primary-dark;
+				}
+			}
+		}
+		margin-bottom: 30px;
+	} 
+	
+}
