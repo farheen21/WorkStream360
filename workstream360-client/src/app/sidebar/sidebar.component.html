@@ -1,0 +1,198 @@
+<!-- <div class="sidebar">
+ <div class="log">
+    <h1 class="font-bold text-xl">WorkStream360</h1>
+    <p class="text-xs font-medium">Workforce Management</p>
+ </div>
+ <div class="sidebar_nav">
+    <nav>
+        <ul class="links">
+            
+            <li>
+                <div>
+                    <a class="icon-link selected" (click)="handleClick()" data-id="dashboard" >
+                        <img src="../assets/dashboard.svg" alt="" />
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a class="icon-link" (click)="handleClick()" data-id="resources">
+                        <img src="../assets/resource.svg" alt="" />
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a class="icon-link" (click)="handleClick()" data-id="budget-dashboard">
+                        <img src="../assets/budget.svg" alt="" />
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a class="icon-link" (click)="handleClick()" data-id="time-management">
+                        <img src="../assets/time_mangement.svg" alt="" />
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a class="icon-link" (click)="handleClick()" data-id="projects">
+                        <img src="../assets/projects.svg" alt="" />
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a class="icon-link" (click)="handleClick()" data-id="risks">
+                        <img src="../assets/risks.svg" alt="" />
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a class="icon-link" (click)="handleClick()" data-id="logout">
+                        <img src="../assets/logout.svg" alt="" />
+                    </a>
+                </div>
+            </li>
+        </ul>
+        <ul class="description">
+            <li>
+                <div class="logo-details">
+                    <div class="logo-heading">TeamFirst</div>
+                    <div class="logo-subheading">Workforce Development</div>
+                </div>
+            </li>
+            <li>
+                <div class="icon-link">
+                    <a (click)="handleClick()" class="selected" data-id="dashboard">Dashboard</a>
+                </div>
+            </li>
+            <li>
+                <div class="icon-link">
+                    <a (click)="handleClick()" data-id="resources">Resources</a>
+                </div>
+            </li>
+            <li>
+                <div class="icon-link">
+                    <a (click)="handleClick()" data-id="budget-dashboard">Budget</a>
+                </div>
+            </li> 
+            <li>
+                <div class="icon-link">
+                    <a (click)="handleClick()" data-id="time-management">Time Management</a>
+                </div>
+            </li>
+            <li>
+                <div class="icon-link">
+                    <a (click)="handleClick()" data-id="projects">Projects</a>
+                </div>
+            </li>
+            <li>
+                <div class="icon-link">
+                    <a (click)="handleClick()" data-id="risks">Risks</a>
+                </div>
+            </li>
+
+        </ul>
+    </nav>
+ </div>
+</div> -->
+
+<nav>
+    <ul class="links">
+        <li>
+            <a class="icon-link margin-btm" (click)="handleClick('dashboard')" data-id="dashboard" >
+                <img src="../assets/logo.svg"/>
+            </a>
+        </li>
+        <li>
+            <div>
+                <a class="icon-link" (click)="handleClick('dashboard')" data-id="dashboard" >
+                    <img src="../assets/dashboard.svg" alt="" />
+                </a>
+            </div>
+        </li>
+        <li>
+            <div>
+                <a class="icon-link" (click)="handleClick('resources')" data-id="resources">
+                    <img src="../assets/resource.svg" alt="" />
+                </a>
+            </div>
+        </li>
+        <li>
+            <div>
+                <a class="icon-link" (click)="handleClick('budget-dashboard')" data-id="budget-dashboard">
+                    <img src="../assets/budget.svg" alt="" />
+                </a>
+            </div>
+        </li>
+        <li>
+            <div>
+                <a class="icon-link" (click)="handleClick('time-management')" data-id="time-management">
+                    <img src="../assets/time_mangement.svg" alt="" />
+                </a>
+            </div>
+        </li>
+        <li>
+            <div>
+                <a class="icon-link" (click)="handleClick('projects')" data-id="projects">
+                    <img src="../assets/projects.svg" alt="" />
+                </a>
+            </div>
+        </li>
+        <li>
+            <div>
+                <a class="icon-link" (click)="handleClick('risks')" data-id="risks">
+                    <img src="../assets/risk.svg" alt="" />
+                </a>
+            </div>
+        </li>
+        <li>
+            <div>
+                <a class="icon-link" (click)="handleClick('logout')" data-id="logout">
+                    <img src="../assets/logout.svg" alt="" />
+                </a>
+            </div>
+        </li>
+    </ul>
+    <ul class="description">
+        <li>
+            <div class="logo-details">
+                <div class="logo-heading">WorkStream360</div>
+                <div class="logo-subheading">Workforce Development</div>
+            </div>
+        </li>
+        <li>
+            <div class="icon-link">
+                <a (click)="handleClick('dashboard')" class="selected" data-id="dashboard">Dashboard</a>
+            </div>
+        </li>
+        <li>
+            <div class="icon-link">
+                <a (click)="handleClick('resources')" data-id="resources">Resources</a>
+            </div>
+        </li>
+        <li>
+            <div class="icon-link">
+                <a (click)="handleClick('budget-dashboard')" data-id="budget-dashboard">Budget</a>
+            </div>
+        </li> 
+        <li>
+            <div class="icon-link">
+                <a (click)="handleClick('time-management')" data-id="time-management">Time Management</a>
+            </div>
+        </li>
+        <li>
+            <div class="icon-link">
+                <a (click)="handleClick('projects')" data-id="projects">Projects</a>
+            </div>
+        </li>
+        <li>
+            <div class="icon-link">
+                <a (click)="handleClick('risks')" data-id="risks">Risks</a>
+            </div>
+        </li>
+    </ul>
+</nav>
