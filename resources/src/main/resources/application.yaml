@@ -1,0 +1,24 @@
+
+
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/resourcesdb
+    username: root
+    password: Farheen@mtx2021
+    driverClassName: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    #    databasePlatform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+      format-sql: true
+      SQL: DEBUG
+
+#  application:
+#    name: PAYMENT-SERVICE
+#
+#  config:
+#    import: configserver:http://localhost:9296

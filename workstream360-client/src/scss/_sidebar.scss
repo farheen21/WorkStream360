@@ -141,7 +141,7 @@
 
 #main-content-0{
 	.slds-col--padded, .cWslayout, .cb-section_column{
-		padding: 2rem !important;
+		padding: 2rem 1rem 2rem 3rem!important;
 		margin-top: 60px;
 	}
 
@@ -151,6 +151,7 @@
 			font-weight: 600;
 			font-size: 20px;
 			font-family: $ux_font;
+			margin: 0 !important;
 		}
 		.links-section{
 			margin-top: 4px;

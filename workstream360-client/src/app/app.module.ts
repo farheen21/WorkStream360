@@ -8,7 +8,19 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { TestingComponent } from './testing/testing.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
+import { HttpClientModule } from '@angular/common/http';
+// import { MatInputModule } from '@angular/material';
 
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatNativeDateModule} from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { ViewProjectComponent } from './view-project/view-project.component';
+import { CreateResourceComponent } from './create-resource/create-resource.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,11 +28,22 @@ import { CreateProjectComponent } from './create-project/create-project.componen
     SidebarComponent,
     MainLayoutComponent,
     TestingComponent,
-    CreateProjectComponent
+    CreateProjectComponent,
+    ViewProjectComponent,
+    CreateResourceComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule,
+    MatNativeDateModule ,
+    MatInputModule ,
+    MatIconModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

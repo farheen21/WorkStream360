@@ -17,3 +17,17 @@
 .color-success {
   color : #22B783
 }
+.color-grey {
+  color: #63729A;
+}
+.color-warning {
+  color: #F08F32;
+}
+.top-right{
+  top: 25px;
+  right: 9px;
+  svg{
+    fill: $ux_primary-dark;
+  }
+  
+}

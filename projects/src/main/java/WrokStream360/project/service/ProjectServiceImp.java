@@ -3,10 +3,13 @@ package WrokStream360.project.service;
 
 import WrokStream360.project.entity.Project;
 import WrokStream360.project.modal.ProjectRequest;
+import WrokStream360.project.modal.ProjectResponse;
 import WrokStream360.project.repository.ProjectRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import static org.springframework.beans.BeanUtils.copyProperties;
 
 @Service
 @Log4j2
@@ -22,13 +25,18 @@ public class ProjectServiceImp implements ProjectService{
 
         Project project = Project.builder()
                 .projectName(projectRequest.getProjectName())
-                .projectStatus(projectRequest.getProjectStatus())
                 .projectType(projectRequest.getProjectType())
-                .projectHealth(projectRequest.getProjectHealth())
                 .projectStartDate(projectRequest.getProjectStartDate())
                 .projectEndDate(projectRequest.getProjectEndDate())
-                .projectTotalBudget(projectRequest.getProjectTotalBudget())
+                .projectManager(projectRequest.getProjectManager())
+                .projectEngagementLeader(projectRequest.getProjectEngagementLeader())
+                .projectStatus(projectRequest.getProjectStatus())
+                .projectHealth(projectRequest.getProjectHealth())
                 .projectDescription(projectRequest.getProjectDescription())
+                .projectTotalBudget(projectRequest.getProjectTotalBudget())
+                .projectBurnedBudget(projectRequest.getProjectBurnedBudget())
+                .projectRemainingBudget(projectRequest.getProjectRemainingBudget())
+                .projectTotalBurnedHours(projectRequest.getProjectTotalBurnedHours())
                 .build();
 
         projectRepository.save(project);
@@ -36,4 +44,16 @@ public class ProjectServiceImp implements ProjectService{
         log.info("Project Created");
         return project.getProjectId();
     }
+
+
+    @Override
+    public ProjectResponse getProjectById(long projectId) {
+        log.info("Getting the project information for product id: {}" , projectId);
+        Project project = projectRepository.findById(projectId).orElseThrow();
+        ProjectResponse projectResponse = new ProjectResponse();
+        copyProperties(project , projectResponse);
+        return projectResponse;
+    }
+
+
 }

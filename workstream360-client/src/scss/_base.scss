@@ -73,7 +73,7 @@ a,
 button,
 input,
 select,
-lightning-textarea textarea {
+textarea {
     &:focus,
     &:active {
         @include border-style;
@@ -87,4 +87,22 @@ lightning-textarea textarea {
 
 h1 , p , h2{
     color: $ux_default-text;
+}
+
+input, select ,textarea{
+    font-size: 13px;
+    font-weight: lighter;
+    min-height: 38px;
+    align-items: center;
+    border-radius: 4px !important;
+    border-color:$ux_input-border !important;
+    color: $ux_primary-dark !important;
+    font-family: $ux_headingfont;
+    &::placeholder{
+        color: $ux_default-text !important; 
+        opacity: 30%;
+    }   
+    &[disabled]{ 
+        background-color: $ux_disabled; 
+    }
 }

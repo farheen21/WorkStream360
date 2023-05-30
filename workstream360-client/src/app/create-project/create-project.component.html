@@ -17,78 +17,154 @@
     <div class="text-center">
         <button type="button" class="text-white secondary-button font-medium rounded-md text-sm px-4 py-2 mr-3 mb-2 hover:bg-slate-100">Back</button>
 
-        <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm px-4 py-2 mr-3 mb-2 dark:hover:bg-blue-700">Save</button>
+        <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm px-4 py-2 mr-3 mb-2 dark:hover:bg-blue-700" (click)="handleSubmit()">Save</button>
 
         <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm px-4 py-2 mr-3 mb-2 dark:hover:bg-blue-700">Publish</button>
     </div>
 </div>
 
 <div class="card">
-    <h2 class="font-semibold text-base pb-7">Project Detail
-        <ng-template *ngIf="isStatus">
+    <div class="flex justify-between">
+        <h2 class="font-semibold text-base pb-5">Project Detail
             <span> | </span>
-            <span class="text-base font-medium color-success">Active</span>
-        </ng-template>
-    </h2>
-
-    <div>
-
-<form>
-    <div class="grid gap-6 mb-6 md:grid-cols-2">
+            <span class="font-medium color-success text-base">Active</span>
+        </h2>
         <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project Name</label>
-            <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required>
-        </div>
-        <div>
-            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Select Type">
-            <option value="CA">Completed</option>
-            <option value="FR">Ongoing</option>
-            <option value="DE">Pending</option>
-            </select>
-        </div>
-       
-
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project Name</label>
-            <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required>
-        </div>
-
-         
-        <div>
-            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
-            <input type="tel" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
-        </div>
-        <div>
-            <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website URL</label>
-            <input type="url" id="website" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="flowbite.com" required>
-        </div>
-        <div>
-            <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unique visitors (per month)</label>
-            <input type="number" id="visitors" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required>
+            <span class="color-grey ">Health: </span>
+            <span class="text-base font-medium color-warning">Goodwill</span>
         </div>
     </div>
-    <div class="mb-6">
-        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
-        <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.doe@company.com" required>
-    </div> 
-    <div class="mb-6">
-        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-        <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
-    </div> 
-    <div class="mb-6">
-        <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
-        <input type="password" id="confirm_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
-    </div> 
-    <div class="flex items-start mb-6">
-        <div class="flex items-center h-5">
-        <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required>
-        </div>
-        <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
+
+
+    <div class="form feilds">
+        <form [formGroup]="createProjectForm" (ngSubmit)="onSubmit()">
+            <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div>
+                    <label for="projectName" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                    <abbr class="text-red-500">*</abbr>Project Name</label>
+                    <input type="text" id="projectName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required formControlName="projectName">
+                    <div *ngIf="createProjectForm?.get('projectName')?.invalid && createProjectForm?.get('projectName')?.touched">
+                        <small class="text-red-500">Project Name is required.</small>
+                    </div>
+                </div>
+                <div>
+                    <label for="type" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                        <abbr class="text-red-500">*</abbr>Type</label>
+                    <select id="type" formControlName="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Select Type">
+                    <option value="Billable">Billable</option>
+                    <option value="Nonbillable">Nonbillable</option>
+                    </select>
+                    <div *ngIf="createProjectForm?.get('type')?.invalid && createProjectForm?.get('type')?.touched">
+                        <small class="text-red-500">Type is required.</small>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <label for="datepicker" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                        <abbr class="text-red-500">*</abbr>Start Date</label>
+                    <input matInput [matDatepicker]="picker" id="datepicker" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700" placeholder="MM/DD/YYYY" required formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker" class="absolute inset-y-3 right-0 mt-2.5 mr-2.5 cursor-pointer">
+                    <mat-icon>calendar_today</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker class="absolute top-full left-0"></mat-datepicker>
+                    <div *ngIf="createProjectForm?.get('startDate')?.invalid && createProjectForm?.get('startDate')?.touched">
+                        <small class="text-red-500">Start Date is required.</small>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <label for="datepicker" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                        <abbr class="text-red-500">*</abbr>End Date</label>
+                    <input matInput [matDatepicker]="picker1" id="datepicker1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700" placeholder="MM/DD/YYYY" required formControlName="endDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker1" class="absolute inset-y-3 right-0 mt-2.5 mr-2.5 cursor-pointer">
+                    <mat-icon>calendar_today</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker1 class="absolute top-full left-0"></mat-datepicker>
+                    <div *ngIf="createProjectForm?.get('endDate')?.invalid && createProjectForm?.get('endDate')?.touched">
+                        <small class="text-red-500">End Date is required.</small>
+                      </div>
+                </div>
+                
+                <div>
+                    <label for="ProjectManager" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                        <abbr class="text-red-500">*</abbr>Project Manager</label>
+                    <input type="text" formControlName="projectManager" id="ProjectManager" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required>
+                    <div *ngIf="createProjectForm?.get('projectManager')?.invalid && createProjectForm?.get('projectManager')?.touched">
+                        <small class="text-red-500">Project Manager is required.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="engagementLeader" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                        <abbr class="text-red-500">*</abbr>Engagement Leader</label>
+                    <input type="text" formControlName="engagementLeader" id="engagementLeader" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required>
+                    <div *ngIf="createProjectForm?.get('engagementLeader')?.invalid && createProjectForm?.get('engagementLeader')?.touched">
+                        <small class="text-red-500">Engagement Leader is required.</small>
+                      </div>
+                </div>
+                
+                <div>
+                    <label for="status" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                        <abbr class="text-red-500">*</abbr>Status</label>
+                    <select id="status" formControlName="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Select Type">
+                    <option value="CA">Active</option>
+                    <option value="FR">Completed</option>
+                    <option value="DE">On Hold</option>
+                    <option value="DE">Upcoming</option>
+                    
+                    </select>
+                    <div *ngIf="createProjectForm?.get('status')?.invalid && createProjectForm?.get('status')?.touched">
+                        <small class="text-red-500">Status is required.</small>
+                      </div>
+                </div>
+
+                <div>
+                    <label for="health" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                        <abbr class="text-red-500">*</abbr>Health</label>
+                    <select id="health" formControlName="health" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Select Type">
+                    <option value="CA">Normal</option>
+                    <option value="FR">Critical</option>
+                    <option value="DE">Goodwill</option>
+                    </select>
+                    <div *ngIf="createProjectForm?.get('health')?.invalid && createProjectForm?.get('health')?.touched">
+                        <small class="text-red-500">Health is required.</small>
+                      </div>
+                </div>
+
+                </div>
+                <div>
+                <label for="description" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                    <abbr class="text-red-500">*</abbr>Description</label>
+                <textarea id="description" formControlName="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Description"></textarea>
+                <div *ngIf="createProjectForm?.get('description')?.invalid && createProjectForm?.get('description')?.touched">
+                    <small class="text-red-500">Description is required.</small>
+                </div>
+               </div>
+              <h2 class="font-semibold text-base pt-6 pb-5"> Budget Details</h2>
+            <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div>
+                    <label for="totalBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                        <abbr class="text-red-500">*</abbr>Total Budget</label>
+                    <input type="number" formControlName="totalBudget" id="totalBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required>
+                    <div *ngIf="createProjectForm?.get('totalBudget')?.invalid && createProjectForm?.get('totalBudget')?.touched">
+                        <small class="text-red-500">Total Budget is required.</small>
+                      </div>
+                </div>
+                <div>
+                    <label for="burnedBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">Burned Budget</label>
+                    <input type="number" id="burnedBudget" formControlName="burnedBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name">
+                </div>
+                <div>
+                    <label for="remainingBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">Remaining Budget</label>
+                    <input type="number" id="remainingBudget" formControlName="remainingBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name">
+                </div>
+                <div>
+                    <label for="totalBurnedHours" class="block mb-2 text-sm text-gray-900 dark:text-white">Total Burned Hours</label>
+                    <input type="number" id="totalBurnedHours" formControlName="totalBurnedHours" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name">
+                </div>
+            </div>
+        </form>
     </div>
-</form>
-</div>
-    
 </div>
 
 
