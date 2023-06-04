@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl , FormGroup, Validators } from '@angular/forms';
 import { ProjectService } from '../service/project.service';
 import { Project } from '../Modal/project_dto';
+import { ResourceService } from '../service/resource.service';
 
 @Component({
   selector: 'app-create-project',
@@ -17,7 +18,9 @@ export class CreateProjectComponent implements OnInit {
   createProjectForm !: FormGroup;
   projectName: string = '';
   projectId: any;
-  constructor(private formBuilder: FormBuilder , private projectService : ProjectService) { }
+  projectManagerResults: string[] = [];
+  engagementLeaderResults: string[] = [];
+  constructor(private formBuilder: FormBuilder , private projectService : ProjectService , private resourceService: ResourceService) { }
 
   ngOnInit() {
     this.createProjectForm = this.formBuilder.group({
@@ -66,5 +69,40 @@ export class CreateProjectComponent implements OnInit {
     }
   );
   }
+  
+  searchProjectManagers(event : any) {
+    const query = event.target.value;
+    this.resourceService.searchProjectManagers(query).subscribe(
+      (results: string[]) => {
+        this.projectManagerResults = results;
+      },
+      (error) => {
+        console.error('Error searching project managers:', error);
+      }
+    );
+  }
 
+  searchEngagementLeaders( event : any) {
+    const query = event.target.value;
+
+    this.resourceService.searchEngagementLeaders(query).subscribe(
+      (results: string[]) => {
+        this.engagementLeaderResults = results;
+      },
+      (error) => {
+        console.error('Error searching engagement leaders:', error);
+      }
+    );
+  }
+
+
+  selectProjectManager(manager: string) {
+    this.createProjectForm.get('projectManager')?.setValue(manager);
+    this.projectManagerResults = [];
+  }
+
+  selectEngagementLeader(leader: string) {
+    this.createProjectForm.get('projectEngagementLeader')?.setValue(leader);
+    this.engagementLeaderResults = [];
+  }
 }

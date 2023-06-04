@@ -90,18 +90,46 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
 
+//
+
+
+//    @Override
+//    public List<String> getAllProjectManagers() {
+//        Long projectManagerRoleId = 1L; // Assuming the role ID for "Project Manager" is 1
+//        List<Resource> projectManagers = resourceRepository.findByResource_resource_Role(projectManagerRoleId);
+//
+//        List<String> projectManagerNames = new ArrayList<>();
+//        for (Resource manager : projectManagers) {
+//            String fullName = manager.getResourceFirstName() + " " + manager.getResourceLastName();
+//            projectManagerNames.add(fullName);
+//        }
+//
+//        return projectManagerNames;
+//    }
 
 
 
+//    @Override
+//    public List<String> getAllProjectManagers() {
+//        List<Resource> projectManagers = resourceRepository.findByResource_Role_ResourceRoleId(PROJECT_MANAGER_ROLE_ID);
+//
+//        List<String> projectManagerNames = new ArrayList<>();
+//        for (Resource manager : projectManagers) {
+//            String fullName = manager.getResourceFirstName() + " " + manager.getResourceLastName();
+//            projectManagerNames.add(fullName);
+//        }
+//
+//        return projectManagerNames;
+//    }
 
-
+    private static final long PROJECT_MANAGER_ROLE_ID = 1;
+    private static final long Engagement_Leader_ROLE_ID = 7;
 
 
     @Override
     public List<String> getAllProjectManagers() {
-        Long projectManagerRoleId = 1L; // Assuming the role ID for "Project Manager" is 1
-        List<Resource> projectManagers = resourceRepository.findByResourceByRoleId(projectManagerRoleId);
-
+        List<Resource> projectManagers = resourceRepository.findByRoleId(PROJECT_MANAGER_ROLE_ID);
+        log.info(PROJECT_MANAGER_ROLE_ID);
         List<String> projectManagerNames = new ArrayList<>();
         for (Resource manager : projectManagers) {
             String fullName = manager.getResourceFirstName() + " " + manager.getResourceLastName();
@@ -110,6 +138,20 @@ public class ResourceServiceImpl implements ResourceService {
 
         return projectManagerNames;
     }
+
+    @Override
+    public List<String> getAllEngagementLeaders() {
+
+        List<Resource> engagementLeaders = resourceRepository.findByRoleId(Engagement_Leader_ROLE_ID);
+        List<String> engagementLeaderNames = new ArrayList<>();
+        for (Resource leader : engagementLeaders) {
+            String fullName = leader.getResourceFirstName() + " " + leader.getResourceLastName();
+            engagementLeaderNames.add(fullName);
+        }
+
+        return engagementLeaderNames;
+    }
+
 
 
 }

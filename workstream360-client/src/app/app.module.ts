@@ -24,6 +24,12 @@ import { ViewProjectComponent } from './view-project/view-project.component';
 import { CreateResourceComponent } from './create-resource/create-resource.component';
 import { AddResourceToProjectComponent } from './add-resource-to-project/add-resource-to-project.component';
 import { ViewProjectResourceTableComponent } from './view-project-resource-table/view-project-resource-table.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ResourcesComponent } from './resources/resources.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { BudgetsComponent } from './budgets/budgets.component';
+import { TimeManagementComponent } from './time-management/time-management.component';
+import { RisksComponent } from './risks/risks.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +42,12 @@ import { ViewProjectResourceTableComponent } from './view-project-resource-table
     CreateResourceComponent,
     AddResourceToProjectComponent,
     ViewProjectResourceTableComponent,
+    DashboardComponent,
+    ResourcesComponent,
+    ProjectsComponent,
+    BudgetsComponent,
+    TimeManagementComponent,
+    RisksComponent,
     
   ],
   imports: [

@@ -85,7 +85,7 @@
                       </div>
                 </div>
                 
-                <div>
+                <!-- <div>
                     <label for="ProjectManager" class="block mb-2 text-sm text-gray-900 dark:text-white">
                         <abbr class="text-red-500">*</abbr>Project Manager</label>
                     <input type="text" formControlName="projectManager" id="ProjectManager" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required>
@@ -101,8 +101,37 @@
                     <div *ngIf="createProjectForm?.get('projectEngagementLeader')?.invalid && createProjectForm?.get('projectEngagementLeader')?.touched">
                         <small class="text-red-500">Engagement Leader is required.</small>
                       </div>
-                </div>
-                
+                </div> -->
+
+                <div>
+                    <label for="ProjectManager" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                      <abbr class="text-red-500">*</abbr>Project Manager</label>
+                    <input type="text" formControlName="projectManager" id="ProjectManager" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700"
+                      placeholder="Enter Project Name" required (input)="searchProjectManagers($event)">
+                    <div *ngIf="createProjectForm?.get('projectManager')?.invalid && createProjectForm?.get('projectManager')?.touched">
+                      <small class="text-red-500">Project Manager is required.</small>
+                    </div>
+                    <div class="z-10 w-full bg-white divide-y divide-gray-100 rounded-lg shadow  dark:bg-gray-700" *ngIf="projectManagerResults.length > 0">
+                        <ul *ngIf="projectManagerResults.length > 0" class="py-2 text-sm text-gray-700 dark:text-gray-200">
+                            <li *ngFor="let manager of projectManagerResults" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" (click)="selectProjectManager(manager)">{{ manager }}</li>
+                          </ul>
+                    </div> 
+                  </div>
+                  <div>
+                    <label for="projectEngagementLeader" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                      <abbr class="text-red-500">*</abbr>Engagement Leader</label>
+                    <input type="text" formControlName="projectEngagementLeader" id="projectEngagementLeader" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700"
+                      placeholder="Enter Project Name" required (input)="searchEngagementLeaders($event)">
+                    <div *ngIf="createProjectForm?.get('projectEngagementLeader')?.invalid && createProjectForm?.get('projectEngagementLeader')?.touched">
+                      <small class="text-red-500">Engagement Leader is required.</small>
+                    </div>
+                    <div *ngIf="engagementLeaderResults.length > 0" class="z-10 w-full bg-white divide-y divide-gray-100 rounded-lg shadow  dark:bg-gray-700">
+                        <ul  class="py-2 text-sm text-gray-700 dark:text-gray-200">
+                            <li *ngFor="let leader of engagementLeaderResults" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" (click)="selectEngagementLeader(leader)">{{ leader }}</li>
+                          </ul>
+                    </div>
+                  </div>
+
                 <div>
                     <label for="projectStatus" class="block mb-2 text-sm text-gray-900 dark:text-white">
                         <abbr class="text-red-500">*</abbr>project Status</label>
@@ -135,7 +164,7 @@
                 <div>
                 <label for="projectDescription" class="block mb-2 text-sm text-gray-900 dark:text-white">
                     <abbr class="text-red-500">*</abbr>Description</label>
-                <textarea id="projectDescription" formControlName="projectDescription" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter projectDescription"></textarea>
+                <textarea id="projectDescription" formControlName="projectDescription" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter projectDescription" maxlength="255"></textarea>
                 <div *ngIf="createProjectForm?.get('projectDescription')?.invalid && createProjectForm?.get('projectDescription')?.touched">
                     <small class="text-red-500">Description is required.</small>
                 </div>

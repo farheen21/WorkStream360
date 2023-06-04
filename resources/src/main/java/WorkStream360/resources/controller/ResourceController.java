@@ -47,4 +47,9 @@ public class ResourceController {
     public List<String> getAllProjectManagers() {
         return resourceService.getAllProjectManagers();
     }
+
+    @GetMapping("/engagementLeaders")
+    public List<String> getAllEngagementLeaders() {
+        return resourceService.getAllEngagementLeaders();
+    }
 }

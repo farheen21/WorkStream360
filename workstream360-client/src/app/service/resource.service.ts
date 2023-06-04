@@ -9,10 +9,23 @@ import { Resource } from '../Modal/resource_dto';
 })
 export class ResourceService {
 
+  private apiUrl = 'http://localhost:8081/resource';
+
   constructor(private http: HttpClient) { }
-  private apiUrl = 'http://localhost:8081/resource/add-resource'; 
-  addResource(resource : Resource){
-    return this.http.post<number>(  this.apiUrl, resource)
+
+  addResource(resource: Resource) {
+    const url = `${this.apiUrl}/add-resource`;
+    return this.http.post<number>(url, resource);
+  }
+
+  searchProjectManagers(query: string) {
+    const url = `${this.apiUrl}/projectManagers?query=${query}`;
+    return this.http.get<string[]>(url);
+  }
+
+  searchEngagementLeaders(query: string) {
+    const url = `${this.apiUrl}/engagementLeaders?query=${query}`;
+    return this.http.get<string[]>(url);
   }
 }
 
