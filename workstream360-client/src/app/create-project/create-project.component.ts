@@ -12,36 +12,45 @@ import { Project } from '../Modal/project_dto';
 export class CreateProjectComponent implements OnInit {
   isStatus : boolean =  true;
   totalBudget: number = 0;
-
+  
   
   createProjectForm !: FormGroup;
+  projectName: string = '';
+  projectId: any;
   constructor(private formBuilder: FormBuilder , private projectService : ProjectService) { }
 
   ngOnInit() {
     this.createProjectForm = this.formBuilder.group({
       projectName: ['', Validators.required],
-      type: ['', Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      projectType: ['', Validators.required],
+      projectStartDate: ['', Validators.required],
+      projectEndDate: ['', Validators.required],
       projectManager: ['', Validators.required],
-      engagementLeader: ['', Validators.required],
-      status: ['', Validators.required],
-      health: ['', Validators.required],
-      description: ['', Validators.required],
+      projectEngagementLeader: ['', Validators.required],
+      projectStatus: ['', Validators.required],
+      projectHealth: ['', Validators.required],
+      projectDescription: ['', Validators.required],
 
-      totalBudget: ['', Validators.required],
-      burnedBudget: { value: 0, disabled: true },
-      remainingBudget: { value: 0, disabled: true },
-      totalBurnedHours: { value: 0, disabled: true }
+      projectTotalBudget: ['', Validators.required],
+      projectBurnedBudget: { value: 0, disabled: true },
+      projectRemainingBudget: { value: 0, disabled: true },
+      projectTotalBurnedHours: { value: 0, disabled: true }
+      
+      
+      
     });
   }
   
   onSubmit() {
+    console.log("calling before invalid --->",this.createProjectForm.value);
     if (this.createProjectForm.invalid) {
-      return;
+      console.log(this.createProjectForm.value);
+      console.log("validation of form")
+      this.projectName = this.createProjectForm.get('projectName')?.value;
+      console.log( "project name from parent ---> " , this.projectName)
     }
   }
-
+  
   handleSubmit(){
     console.log(this.createProjectForm.value);
     const formData: Project = { ...this.createProjectForm.value };
@@ -49,6 +58,7 @@ export class CreateProjectComponent implements OnInit {
     projectId => {
       console.log('Project added successfully. ID:', projectId);
       // Do further operations or show success message
+      this.projectId = projectId;
     },
     error => {
       console.error('Failed to add project:', error);

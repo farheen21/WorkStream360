@@ -1,0 +1,50 @@
+
+table {
+    border-spacing: 0;
+    background-color: white;
+    font-family: $ux_font;
+    thead { 
+        background-color: $ux_fill;
+        min-height: 46px;
+        height: 46px;
+        th {
+            font-weight: 500;
+            font-family: $ux_font;
+        }
+    }
+    tbody {
+        color: $ux_secondary-text;
+        font-size: 13px; 
+        tr{
+            min-height: 61px;
+            height: 61px;
+            &+tr{
+                border-top: 2px solid $ux_table_border;
+            }
+            a {
+                text-decoration: none;
+                color: $ux_secondary-color;
+                font-size: 14px;
+                font-weight: 500;
+            }
+            input {
+                border: 1px solid #E0E3ED;
+            }
+            
+        }
+        .actions{
+            span{
+                color: $ux_secondary-text;
+            }
+        }
+    }
+    td, th{
+        padding: 0 12px;
+    }
+    &.bdg-dashboard >  tbody > tr:last-child td{
+            font-weight: 600; 
+        }
+}
+
+
+  

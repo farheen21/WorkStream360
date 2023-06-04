@@ -85,8 +85,12 @@ textarea {
     }
 }
 
-h1 , p , h2{
+h1 , p , h2 , h3{
     color: $ux_default-text;
+}
+
+.dark-grey{
+    color: $ux_default-text !important;
 }
 
 input, select ,textarea{
@@ -104,5 +108,11 @@ input, select ,textarea{
     }   
     &[disabled]{ 
         background-color: $ux_disabled; 
+    }
+}
+
+.add-resource-project{
+    .inset-y-3 {
+        top: -0.8rem;
     }
 }

@@ -1,0 +1,159 @@
+
+
+<div class="px-4 py-4" class="add-resource-project">
+    <div class="flex justify-between py-2.5">
+        <h2 class="font-semibold text-base">Resources
+        </h2>
+        <!-- <button class="text-primary">Add Resources</button> -->
+        <!-- Modal toggle -->
+         <a class="text-primary" (click)="toggleModal()" > Add Resources</a>
+    </div>
+   
+    
+</div>
+
+<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-sm dark-grey">
+        <tr>
+          <th scope="col" class="">Resource Role</th>
+          <th scope="col" class="">Resource</th>
+          <th scope="col" class="">Allocated Budget</th>
+          <th scope="col" class="">Allocated Hours</th>
+          <th scope="col" class="">Burned Hours</th>
+          <th scope="col" class="">Assignment Start Date</th>
+          <th scope="col" class="">Assignment End Date</th>
+          <th scope="col" class="">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resource of resources" class="">
+          <th scope="row" class="font-medium whitespace-nowrap">
+            <div class="whitespace-nowrap">{{ resource.role }}</div>
+          </th>
+          <td class="">
+            <div class="whitespace-nowrap">{{ resource.resource }}</div>
+          </td>
+          <td class="">
+            <div class="whitespace-nowrap">{{ resource.allocatedBudget }}</div>
+          </td>
+          <td>
+            <div class="whitespace-nowrap">{{ resource.allocatedHours }}</div>
+          </td>
+          <td>
+            <div class="whitespace-nowrap">{{ resource.burnedHours }}</div>
+          </td>
+          <td>
+            <div class="whitespace-nowrap">{{ resource.assignmentStartDate | date: 'dd/MM/yyyy' }}</div>
+          </td>
+          <td>
+            <div class="whitespace-nowrap">{{ resource.assignmentEndDate  | date: 'dd/MM/yyyy' }}</div>
+          </td>
+          <td class="">
+            <a href="#" class="">View Timecard</a>
+            <span class="p-2">|</span>
+            <a href="#" class="err-color">Remove</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+  
+
+
+  <!-- Overlay -->
+  <div  *ngIf="isModalOpen" class="fixed inset-0 bg-gray-900 modal-container bg-opacity-50  flex items-center justify-center">
+    <!-- Main modal -->
+    <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="relative mx-auto w-full max-w-2xl max-h-full">
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <!-- Modal header -->
+        <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+          <h3 class="text-xl font-medium">
+            Add Resource - {{ projectName }}
+          </h3>
+          <button (click)="closeModal()" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="staticModal">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+          </button>
+        </div>
+        <!-- Modal body -->
+        <div class="p-6 space-y-6">
+            <div class="form feilds">
+                <form [formGroup]="AddReosurctoProjectForm" (ngSubmit)="onSubmit()">
+                    <div class="grid gap-6 mb-6 md:grid-cols-2">
+
+                            <div>
+                            <label for="Resource" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                              <abbr class="text-red-500">*</abbr>Resource</label>
+                            <input type="text" id="Resource" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700"
+                              placeholder="Enter Project Name" [formControl]="resourceControl" (keydown.enter)="searchResource()">
+                            <div *ngIf="resourceControl.invalid && resourceControl.touched">
+                              <small class="text-red-500">Resource Name is required.</small>
+                            </div>
+                          </div>
+                          
+                          <div>
+                            <label for="Role" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                              <abbr class="text-red-500">*</abbr>Role</label>
+                            <input type="text" id="Role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700"
+                              placeholder="Enter Project Name" [value]="selectedRole" [readonly]="true">
+                            <!-- <div *ngIf="AddReosurctoProjectForm?.get('Role')?.invalid && AddReosurctoProjectForm?.get('Role')?.touched">
+                              <small class="text-red-500">Role Name is required.</small>
+                            </div> -->
+                          </div>
+                          
+                        <div class="relative">
+                            <label for="datepicker3" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                                <abbr class="text-red-500">*</abbr>Start Date</label>
+                            <input matInput [matDatepicker]="picker3" id="datepicker3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700" placeholder="MM/DD/YYYY" required formControlName="startDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker3" class="absolute inset-y-3 top-rem right-0 mt-2.5 mr-2.5 cursor-pointer">
+                            <mat-icon>calendar_today</mat-icon>
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker3 class="absolute top-full left-0"></mat-datepicker>
+                            <div *ngIf="AddReosurctoProjectForm?.get('startDate')?.invalid && AddReosurctoProjectForm?.get('startDate')?.touched">
+                                <small class="text-red-500">Start Date is required.</small>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <label for="datepicker4" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                                <abbr class="text-red-500">*</abbr>End Date</label>
+                            <input matInput [matDatepicker]="picker4" id="datepicker4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700" placeholder="MM/DD/YYYY" required formControlName="endDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker4" class="absolute inset-y-3 top-rem right-0 mt-2.5 mr-2.5 cursor-pointer">
+                            <mat-icon>calendar_today</mat-icon>
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker4 class="absolute top-full left-0"></mat-datepicker>
+                            <div *ngIf="AddReosurctoProjectForm?.get('endDate')?.invalid && AddReosurctoProjectForm?.get('endDate')?.touched">
+                                <small class="text-red-500">End Date is required.</small>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="Total Budget" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                            <abbr class="text-red-500">*</abbr>Total Budget</label>
+                            <input type="text" id="Total Budget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required formControlName="TotalBudget">
+                            <div *ngIf="AddReosurctoProjectForm?.get('Total Budget')?.invalid && AddReosurctoProjectForm?.get('Total Budget')?.touched">
+                                <small class="text-red-500">Total Budget Name is required.</small>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="Total Hours" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                            <abbr class="text-red-500">*</abbr>Total Hours</label>
+                            <input type="text" id="Total Hours" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required formControlName="TotalHours">
+                            <div *ngIf="AddReosurctoProjectForm?.get('Total Hours')?.invalid && AddReosurctoProjectForm?.get('Total Hours')?.touched">
+                                <small class="text-red-500">Total Hours Name is required.</small>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+        </div>
+        <!-- Modal footer -->
+        <div class="flex items-center py-4 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+          <button (click)="onSubmit()" type="button" class=" primary-button text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
+          <button (click)="toggleModal()" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+  
+</div>

@@ -9,41 +9,42 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity(name = "RESOURCES")
+@Entity
+@Table(name = "resources")
 public class Resource {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long resourceId;
 
-    @Column(name = "RESOURCE_FIRST_NAME")
+    @Column(name = "first_name")
     private String resourceFirstName;
 
-    @Column(name = "RESOURCE_LAST_NAME")
+    @Column(name = "last_name")
     private String resourceLastName;
 
-    @Column(name = "RESOURCE_PHONE_NUMBER")
+    @Column(name = "phone_number")
     private Long resourcePhoneNumber;
 
-    @Column(name = "RESOURCE_EMAIL")
+    @Column(name = "email")
     private String  resourceEmail;
 
-    @Column(name = "RESOURCE_DATE_OF_BIRTH")
+    @Column(name = "dob")
     private  String resourceDateOfBirth;
 
-    @Column(name = "RESOURCE_LOCATION")
+    @Column(name = "location")
     private LocationEnum resourceLocation;
 
-
     @ManyToOne
-    @JoinColumn(name = "resourceRoleId")
+    @JoinColumn(name = "role_id")
     private ResourceRole resource_Role;
 
-    @Column(name = "RESOURCE_JOINING_DATE")
+//    private ResourceRole resource_Role;
+    @Column(name = "joining_date")
     private String resourceJoiningDate;
 
-    @Column(name = "RESOURCE_REPORTING_MANAGER")
+    @Column(name = "reporting_manger")
     private String resourceReportingManager;
 
-    @Column(name = "RESOURCE_EXPERIENCE")
+    @Column(name = "experience")
     private String resourceExperience;
 }

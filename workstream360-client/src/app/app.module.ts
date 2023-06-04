@@ -10,6 +10,7 @@ import { TestingComponent } from './testing/testing.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { HttpClientModule } from '@angular/common/http';
 // import { MatInputModule } from '@angular/material';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -21,6 +22,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewProjectComponent } from './view-project/view-project.component';
 import { CreateResourceComponent } from './create-resource/create-resource.component';
+import { AddResourceToProjectComponent } from './add-resource-to-project/add-resource-to-project.component';
+import { ViewProjectResourceTableComponent } from './view-project-resource-table/view-project-resource-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +34,8 @@ import { CreateResourceComponent } from './create-resource/create-resource.compo
     CreateProjectComponent,
     ViewProjectComponent,
     CreateResourceComponent,
+    AddResourceToProjectComponent,
+    ViewProjectResourceTableComponent,
     
   ],
   imports: [
@@ -43,7 +48,8 @@ import { CreateResourceComponent } from './create-resource/create-resource.compo
     MatInputModule ,
     MatIconModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

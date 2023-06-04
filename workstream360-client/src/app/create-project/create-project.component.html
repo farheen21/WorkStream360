@@ -17,9 +17,9 @@
     <div class="text-center">
         <button type="button" class="text-white secondary-button font-medium rounded-md text-sm px-4 py-2 mr-3 mb-2 hover:bg-slate-100">Back</button>
 
-        <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm px-4 py-2 mr-3 mb-2 dark:hover:bg-blue-700" (click)="handleSubmit()">Save</button>
+        <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm px-4 py-2 mr-3 mb-2 dark:hover:bg-blue-700" (click)="onSubmit()">Save</button>
 
-        <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm px-4 py-2 mr-3 mb-2 dark:hover:bg-blue-700">Publish</button>
+        <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm px-4 py-2 mr-3 mb-2 dark:hover:bg-blue-700" (click)="handleSubmit()">Publish</button>
     </div>
 </div>
 
@@ -36,7 +36,7 @@
     </div>
 
 
-    <div class="form feilds">
+   <div class="form feilds">
         <form [formGroup]="createProjectForm" (ngSubmit)="onSubmit()">
             <div class="grid gap-6 mb-6 md:grid-cols-2">
                 <div>
@@ -50,11 +50,11 @@
                 <div>
                     <label for="type" class="block mb-2 text-sm text-gray-900 dark:text-white">
                         <abbr class="text-red-500">*</abbr>Type</label>
-                    <select id="type" formControlName="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Select Type">
+                    <select id="type" formControlName="projectType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Select  project Type">
                     <option value="Billable">Billable</option>
                     <option value="Nonbillable">Nonbillable</option>
                     </select>
-                    <div *ngIf="createProjectForm?.get('type')?.invalid && createProjectForm?.get('type')?.touched">
+                    <div *ngIf="createProjectForm?.get(' projectType')?.invalid && createProjectForm?.get(' projectType')?.touched">
                         <small class="text-red-500">Type is required.</small>
                     </div>
                 </div>
@@ -62,12 +62,12 @@
                 <div class="relative">
                     <label for="datepicker" class="block mb-2 text-sm text-gray-900 dark:text-white">
                         <abbr class="text-red-500">*</abbr>Start Date</label>
-                    <input matInput [matDatepicker]="picker" id="datepicker" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700" placeholder="MM/DD/YYYY" required formControlName="startDate">
+                    <input matInput [matDatepicker]="picker" id="datepicker" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700" placeholder="MM/DD/YYYY" required formControlName="projectStartDate">
                     <mat-datepicker-toggle matSuffix [for]="picker" class="absolute inset-y-3 right-0 mt-2.5 mr-2.5 cursor-pointer">
                     <mat-icon>calendar_today</mat-icon>
                     </mat-datepicker-toggle>
                     <mat-datepicker #picker class="absolute top-full left-0"></mat-datepicker>
-                    <div *ngIf="createProjectForm?.get('startDate')?.invalid && createProjectForm?.get('startDate')?.touched">
+                    <div *ngIf="createProjectForm?.get('projectStartDate')?.invalid && createProjectForm?.get('projectStartDate')?.touched">
                         <small class="text-red-500">Start Date is required.</small>
                     </div>
                 </div>
@@ -75,12 +75,12 @@
                 <div class="relative">
                     <label for="datepicker" class="block mb-2 text-sm text-gray-900 dark:text-white">
                         <abbr class="text-red-500">*</abbr>End Date</label>
-                    <input matInput [matDatepicker]="picker1" id="datepicker1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700" placeholder="MM/DD/YYYY" required formControlName="endDate">
+                    <input matInput [matDatepicker]="picker1" id="datepicker1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700" placeholder="MM/DD/YYYY" required formControlName="projectEndDate">
                     <mat-datepicker-toggle matSuffix [for]="picker1" class="absolute inset-y-3 right-0 mt-2.5 mr-2.5 cursor-pointer">
                     <mat-icon>calendar_today</mat-icon>
                     </mat-datepicker-toggle>
                     <mat-datepicker #picker1 class="absolute top-full left-0"></mat-datepicker>
-                    <div *ngIf="createProjectForm?.get('endDate')?.invalid && createProjectForm?.get('endDate')?.touched">
+                    <div *ngIf="createProjectForm?.get('projectEndDate')?.invalid && createProjectForm?.get('projectEndDate')?.touched">
                         <small class="text-red-500">End Date is required.</small>
                       </div>
                 </div>
@@ -95,77 +95,79 @@
                 </div>
 
                 <div>
-                    <label for="engagementLeader" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                    <label for="projectEngagementLeader" class="block mb-2 text-sm text-gray-900 dark:text-white">
                         <abbr class="text-red-500">*</abbr>Engagement Leader</label>
-                    <input type="text" formControlName="engagementLeader" id="engagementLeader" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required>
-                    <div *ngIf="createProjectForm?.get('engagementLeader')?.invalid && createProjectForm?.get('engagementLeader')?.touched">
+                    <input type="text" formControlName="projectEngagementLeader" id="projectEngagementLeader" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required>
+                    <div *ngIf="createProjectForm?.get('projectEngagementLeader')?.invalid && createProjectForm?.get('projectEngagementLeader')?.touched">
                         <small class="text-red-500">Engagement Leader is required.</small>
                       </div>
                 </div>
                 
                 <div>
-                    <label for="status" class="block mb-2 text-sm text-gray-900 dark:text-white">
-                        <abbr class="text-red-500">*</abbr>Status</label>
-                    <select id="status" formControlName="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Select Type">
-                    <option value="CA">Active</option>
-                    <option value="FR">Completed</option>
-                    <option value="DE">On Hold</option>
-                    <option value="DE">Upcoming</option>
+                    <label for="projectStatus" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                        <abbr class="text-red-500">*</abbr>project Status</label>
+                    <select id="projectStatus" formControlName="projectStatus" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Select Type">
+                    <option value="Active">Active</option>
+                    <option value="Completed">Completed</option>
+                    <option value="OnHold">On Hold</option>
+                    <option value="Upcoming">Upcoming</option>
                     
                     </select>
-                    <div *ngIf="createProjectForm?.get('status')?.invalid && createProjectForm?.get('status')?.touched">
+                    <div *ngIf="createProjectForm?.get('projectStatus')?.invalid && createProjectForm?.get('projectStatus')?.touched">
                         <small class="text-red-500">Status is required.</small>
                       </div>
                 </div>
 
                 <div>
-                    <label for="health" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                    <label for="projectHealth" class="block mb-2 text-sm text-gray-900 dark:text-white">
                         <abbr class="text-red-500">*</abbr>Health</label>
-                    <select id="health" formControlName="health" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Select Type">
-                    <option value="CA">Normal</option>
-                    <option value="FR">Critical</option>
-                    <option value="DE">Goodwill</option>
+                    <select id="projectHealth" formControlName="projectHealth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Select Type">
+                    <option value="Normal">Normal</option>
+                    <option value="Critical">Critical</option>
+                    <option value="Goodwill">Goodwill</option>
                     </select>
-                    <div *ngIf="createProjectForm?.get('health')?.invalid && createProjectForm?.get('health')?.touched">
+                    <div *ngIf="createProjectForm?.get('projectHealth')?.invalid && createProjectForm?.get('projectHealth')?.touched">
                         <small class="text-red-500">Health is required.</small>
                       </div>
                 </div>
 
                 </div>
                 <div>
-                <label for="description" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                <label for="projectDescription" class="block mb-2 text-sm text-gray-900 dark:text-white">
                     <abbr class="text-red-500">*</abbr>Description</label>
-                <textarea id="description" formControlName="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Description"></textarea>
-                <div *ngIf="createProjectForm?.get('description')?.invalid && createProjectForm?.get('description')?.touched">
+                <textarea id="projectDescription" formControlName="projectDescription" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter projectDescription"></textarea>
+                <div *ngIf="createProjectForm?.get('projectDescription')?.invalid && createProjectForm?.get('projectDescription')?.touched">
                     <small class="text-red-500">Description is required.</small>
                 </div>
                </div>
               <h2 class="font-semibold text-base pt-6 pb-5"> Budget Details</h2>
             <div class="grid gap-6 mb-6 md:grid-cols-2">
                 <div>
-                    <label for="totalBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                    <label for="projectTotalBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">
                         <abbr class="text-red-500">*</abbr>Total Budget</label>
-                    <input type="number" formControlName="totalBudget" id="totalBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required>
-                    <div *ngIf="createProjectForm?.get('totalBudget')?.invalid && createProjectForm?.get('totalBudget')?.touched">
+                    <input type="number" formControlName="projectTotalBudget" id="projectTotalBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required>
+                    <div *ngIf="createProjectForm?.get('projectTotalBudget')?.invalid && createProjectForm?.get('projectTotalBudget')?.touched">
                         <small class="text-red-500">Total Budget is required.</small>
                       </div>
                 </div>
                 <div>
-                    <label for="burnedBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">Burned Budget</label>
-                    <input type="number" id="burnedBudget" formControlName="burnedBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name">
+                    <label for="projectBurnedBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">Burned Budget</label>
+                    <input type="number" id="projectBurnedBudget" formControlName="projectBurnedBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name">
                 </div>
                 <div>
-                    <label for="remainingBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">Remaining Budget</label>
-                    <input type="number" id="remainingBudget" formControlName="remainingBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name">
+                    <label for="projectRemainingBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">Remaining Budget</label>
+                    <input type="number" id="projectRemainingBudget" formControlName="projectRemainingBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name">
                 </div>
                 <div>
-                    <label for="totalBurnedHours" class="block mb-2 text-sm text-gray-900 dark:text-white">Total Burned Hours</label>
-                    <input type="number" id="totalBurnedHours" formControlName="totalBurnedHours" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name">
+                    <label for="projectTotalBurnedHours" class="block mb-2 text-sm text-gray-900 dark:text-white">Total Burned Hours</label>
+                    <input type="number" id="projectTotalBurnedHours" formControlName="projectTotalBurnedHours" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name">
                 </div>
             </div>
         </form>
-    </div>
+   </div>  
 </div>
 
 
-        
+<div class="card mt-24">
+    <app-add-resource-to-project [projectName]="projectName" [projectId]="projectId" ></app-add-resource-to-project>
+</div>

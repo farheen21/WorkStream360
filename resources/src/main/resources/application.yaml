@@ -17,6 +17,9 @@ spring:
       format-sql: true
       SQL: DEBUG
 
+  application:
+    name: RESOURCE-SERVICE
+
 #  application:
 #    name: PAYMENT-SERVICE
 #

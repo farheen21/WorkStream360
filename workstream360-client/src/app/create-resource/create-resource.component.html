@@ -110,10 +110,15 @@
                     <option value="FR">Program Manager</option>
                     <option value="DE">Bussines Aanalyst</option>
                     <option value="DE">Engagement Leader</option> -->
-                    <option value="PROGRAM_MANAGER">Program Manager</option>
-                    <option value="UI_DESIGNER">UI Designer</option>
-                    <option value="SOFTWARE_ENGINEER">Software Engineer</option>
-                    <option value="SALESFORCE_DEV">Salesforce Dev</option>
+                    <option value="Program Manager">Program Manager</option>
+                    <option value="Project Manager">Project Manager</option>
+                    <option value="Software Engineer">Software Engineer</option>
+                    <option value="Salesforce Dev">Salesforce Dev</option>
+                    <option value="UI/UX Designer">UI/UX Designer</option>
+                    <option value="Backend Engineer">Backend Engineer</option>
+                    <option value="Quality Analyst">Quality Analyst</option>
+                    <option value="Business Analyst">Business Analyst</option>
+                    <option value="Backend Engineer">Backend Engineer</option>
                     </select>
                     <div *ngIf="createResourceForm?.get('role')?.invalid && createResourceForm?.get('role')?.touched">
                         <small class="text-red-500">Role is required.</small>
@@ -156,6 +161,8 @@
         </form>
     </div>
 </div>
+
+
 
 
         
