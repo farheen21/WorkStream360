@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./resources.component.scss']
 })
 export class ResourcesComponent {
-
+  submit(){
+    console.log("I AM CALLED IN METHOD")
+  }
 }

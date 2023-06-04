@@ -30,6 +30,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { BudgetsComponent } from './budgets/budgets.component';
 import { TimeManagementComponent } from './time-management/time-management.component';
 import { RisksComponent } from './risks/risks.component';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +54,7 @@ import { RisksComponent } from './risks/risks.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     MatDatepickerModule,
     MatFormFieldModule,
     BrowserAnimationsModule,

@@ -171,7 +171,7 @@
         </li>
         <li>
             <div class="icon-link">
-                <a (click)="handleClick('resources')" data-id="resources">Resources</a>
+                <a (click)="handleClick('resources')" routerLink="/resources" routerLinkActive="active"  data-id="resources">Resources</a>
             </div>
         </li>
         <li>
@@ -195,4 +195,102 @@
             </div>
         </li>
     </ul>
-</nav>
+</nav> 
+
+<!-- <nav>
+    <ul class="links">
+        <li>
+            <a class="icon-link margin-btm" (click)="handleClick('dashboard')" data-id="dashboard" >
+                <img src="../assets/logo.svg"/>
+            </a>
+        </li>
+        <li>
+            <div>
+                <a [routerLink]="['/dashboard']" [routerLinkActive]="'selected'" data-id="dashboard" >
+                    <img src="../assets/dashboard.svg" alt="" />
+                </a>
+            </div>
+        </li>
+        <li>
+            <div>
+                <a [routerLink]="['/resources']" [routerLinkActive]="'selected'" data-id="resources">
+                    <img src="../assets/resource.svg" alt="" />
+                </a>
+            </div>
+        </li>
+        <li>
+            <div>
+                <a [routerLink]="['/budget-dashboard']" [routerLinkActive]="'selected'" data-id="budget-dashboard">
+                    <img src="../assets/budget.svg" alt="" />
+                </a>
+            </div>
+        </li>
+        <li>
+            <div>
+                <a [routerLink]="['/time-management']" [routerLinkActive]="'selected'" data-id="time-management">
+                    <img src="../assets/time_mangement.svg" alt="" />
+                </a>
+            </div>
+        </li>
+        <li>
+            <div>
+                <a [routerLink]="['/projects']" [routerLinkActive]="'selected'" data-id="projects">
+                    <img src="../assets/projects.svg" alt="" />
+                </a>
+            </div>
+        </li>
+        <li>
+            <div>
+                <a [routerLink]="['/risks']" [routerLinkActive]="'selected'" data-id="risks">
+                    <img src="../assets/risk.svg" alt="" />
+                </a>
+            </div>
+        </li>
+        <li>
+            <div>
+                <a [routerLink]="['/logout']" [routerLinkActive]="'selected'" data-id="logout">
+                    <img src="../assets/logout.svg" alt="" />
+                </a>
+            </div>
+        </li>
+    </ul>
+    <ul class="description">
+        <li>
+            <div class="logo-details">
+                <div class="logo-heading">WorkStream360</div>
+                <div class="logo-subheading">Workforce Development</div>
+            </div>
+        </li>
+        <li>
+            <div class="icon-link">
+                <a [routerLink]="['/dashboard']" [routerLinkActive]="'selected'" data-id="dashboard">Dashboard</a>
+            </div>
+        </li>
+        <li>
+            <div class="icon-link">
+                <a [routerLink]="['/resources']" [routerLinkActive]="'selected'" data-id="resources">Resources</a>
+            </div>
+        </li>
+        <li>
+            <div class="icon-link">
+                <a [routerLink]="['/budget-dashboard']" [routerLinkActive]="'selected'" data-id="budget-dashboard">Budget</a>
+            </div>
+        </li> 
+        <li>
+            <div class="icon-link">
+                <a [routerLink]="['/time-management']" [routerLinkActive]="'selected'" data-id="time-management">Time Management</a>
+            </div>
+        </li>
+        <li>
+            <div class="icon-link">
+                <a [routerLink]="['/projects']" [routerLinkActive]="'selected'" data-id="projects">Projects</a>
+            </div>
+        </li>
+        <li>
+            <div class="icon-link">
+                <a [routerLink]="['/risks']" [routerLinkActive]="'selected'" data-id="risks">Risks</a>
+            </div>
+        </li>
+    </ul>
+</nav> -->
+
