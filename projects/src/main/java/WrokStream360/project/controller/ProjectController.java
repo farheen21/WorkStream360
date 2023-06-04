@@ -43,5 +43,15 @@ public class ProjectController {
         return new ResponseEntity<>(allocationId, HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/{projectId}")
+    public ResponseEntity<String> deleteProject(@PathVariable long projectId) {
+        // Call the deleteProjectById() method of the project service
+        projectService.deleteProjectById(projectId);
+
+        // Return a success response
+        return ResponseEntity.ok("Project and associated resources deleted");
+    }
+
+
 
 }

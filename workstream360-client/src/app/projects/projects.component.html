@@ -1,2 +1,76 @@
 
+    <div class="heading-block">
+        <h1 class="page-heading">Projects</h1>
+    </div>
 
+    <div class="filter-section flex flex-wrap justify-between">
+        <div class="flex">
+                <div class="w-300 mr-3">
+                    <input type="text" id="searchProject" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Search Projects" required formControlName="searchProject">
+                    <div *ngIf="createProjectForm?.get('searchProject')?.invalid && createProjectForm?.get('searchProject')?.touched">
+                        <small class="text-red-500">Project Name is required.</small>
+                    </div>
+                </div>
+
+                <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm p-6 py-2 dark:hover:bg-blue-700" (click)="handleFilter()">Filter</button>
+        </div>
+        <div>
+            <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm p-6 py-2.5 dark:hover:bg-blue-700" (click)="handleFilter()">Create Projects</button>
+        </div>
+    </div>
+   
+    <div class="card mt-24">
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-500">
+              <thead class="text-sm dark-grey">
+                <tr>
+                  <th scope="col" class="">Project Name</th>
+                  <th scope="col" class="">Project Manager</th>
+                  <th scope="col" class="">Engagement Leader</th>
+                  <th scope="col" class="">Budget</th>
+                  <th scope="col" class="">Start Date</th>
+                  <th scope="col" class="">End Date</th>
+                  <th scope="col" class="">Health</th>
+                  <th scope="col" class="">Status</th>
+                  <th scope="col" class="">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr  class="">
+                  <th scope="row" class="font-medium whitespace-nowrap">
+                    <div class="whitespace-nowrap">WD-Product</div>
+                  </th>
+                  <td class="">
+                    <div class="whitespace-nowrap">Aviral Kataria</div>
+                  </td>
+                  <td class="">
+                    <div class="whitespace-nowrap">Tony Montemorano</div>
+                  </td>
+                  <td>
+                    <div class="whitespace-nowrap">Tony Montemorano</div>
+                  </td>
+                  <td>
+                    <div class="whitespace-nowrap">4/10/2022</div>
+                  </td>
+                  <td>
+                    <div class="whitespace-nowrap">8/10/2022</div>
+                  </td>
+                  <td>
+                    <div class="whitespace-nowrap">Normal</div>
+                  </td>
+                  <td>
+                    <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Green</span>
+                  </td>
+                  <td class="">
+                    <a href="#" class="">View</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+    
+
+   

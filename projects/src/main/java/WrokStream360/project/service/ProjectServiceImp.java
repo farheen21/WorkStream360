@@ -84,4 +84,19 @@ public class ProjectServiceImp implements ProjectService{
         log.info("Resource added");
         return resourceInProject.getAllocationId();
     }
+
+
+
+    @Override
+    public void deleteProjectById(long projectId) {
+        log.info("Deleting project with ID: {}", projectId);
+
+        // Delete the project
+        projectRepository.deleteById(projectId);
+
+        // Delete the associated resources
+        resourcesInProjectRepository.deleteByProjectId(projectId);
+
+        log.info("Project and associated resources deleted");
+    }
 }

@@ -11,4 +11,6 @@ public interface ProjectService {
     ProjectResponse getProjectById(long projectId);
 
     long addResourceToProject(ProjectResourceRequest projectResourceRequest);
+
+    void deleteProjectById(long projectId);
 }
