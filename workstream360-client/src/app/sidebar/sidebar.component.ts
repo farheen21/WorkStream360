@@ -45,7 +45,7 @@ export class SidebarComponent {
     console.log(pageName)
     break;
     case 'projects':
-      this.router.navigateByUrl('/projects');
+      this.router.navigateByUrl('/project');
       console.log(pageName)
       break;
     case 'risks':

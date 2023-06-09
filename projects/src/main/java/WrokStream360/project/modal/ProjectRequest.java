@@ -27,4 +27,6 @@ public class ProjectRequest {
     private Long projectBurnedBudget;
     private Long projectRemainingBudget;
     private Integer projectTotalBurnedHours;
+
+//    private Long projectId;
 }

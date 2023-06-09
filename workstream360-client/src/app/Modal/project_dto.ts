@@ -1,4 +1,5 @@
 export interface Project {
+    // projectId: any;
     projectName: string;
     projectType: string;
     projectStartDate: Date;
@@ -30,34 +31,3 @@ export interface Project {
     //   totalBurnedHours: number;
     // }
 
-
-    description
-: 
-"xcv cxmnvbeirugf8oy egyeriughrekj hevhdbvhjk"
-endDate
-: 
-"2023-06-21T18:30:00.000Z"
-engagementLeader
-: 
-"Rusking hubert"
-health
-: 
-"FR"
-projectManager
-: 
-"Rajat Jain"
-projectName
-: 
-"WD-Product"
-startDate
-: 
-"2023-06-15T18:30:00.000Z"
-status
-: 
-"DE"
-totalBudget
-: 
-656796078
-type
-: 
-"Billable"

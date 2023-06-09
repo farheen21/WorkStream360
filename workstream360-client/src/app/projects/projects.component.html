@@ -3,25 +3,93 @@
         <h1 class="page-heading">Projects</h1>
     </div>
 
-    <div class="filter-section flex flex-wrap justify-between">
-        <div class="flex">
-                <div class="w-300 mr-3">
-                    <input type="text" id="searchProject" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Search Projects" required formControlName="searchProject">
-                    <div *ngIf="createProjectForm?.get('searchProject')?.invalid && createProjectForm?.get('searchProject')?.touched">
-                        <small class="text-red-500">Project Name is required.</small>
-                    </div>
-                </div>
-
-                <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm p-6 py-2 dark:hover:bg-blue-700" (click)="handleFilter()">Filter</button>
+     <div class="flex mb-8">
+       <!-- ***************charts************** -->
+      <div class="w-70">
+        <div id="chart" class="card mt-24">
+        <h3 class="font-medium">Budgets</h3>
+      <apx-chart
+        [series]="chartOptions['series']"
+        [chart]="chartOptions['chart']"
+        [dataLabels]="chartOptions['dataLabels']"
+        [plotOptions]="chartOptions['plotOptions']"
+        [yaxis]="chartOptions['yaxis']"
+        [xaxis]="chartOptions['xaxis']"
+        [fill]="chartOptions['fill']"
+        [tooltip]="chartOptions['tooltip']"
+        [stroke]="chartOptions['stroke']"
+        [legend]="chartOptions['legend']"></apx-chart>
+        </div>
+      </div>
+      <section class="flex flex-col w-30 pl-14">
+        <div>
+          <div class="card mt-24 flex mb-2 justify-between">
+             <div>
+               <p class="text-xs pb-2">Total Projects</p>
+               <p class="text-2xl font-bold">{{totalProjects}}</p>
+             </div>
+             <div>
+               <img alt="total project"  src="../assets/total-project.svg"/>
+             </div>
+          </div>
         </div>
         <div>
-            <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm p-6 py-2.5 dark:hover:bg-blue-700" (click)="handleFilter()">Create Projects</button>
-        </div>
+         <div class="card mt-24 flex mb-2 justify-between">
+            <div>
+              <p class="text-xs pb-2">Ongoing Projects</p>
+              <p class="text-2xl font-bold">{{ongoingProject}}</p>
+            </div>
+            <div>
+              <img alt="total project"  src="../assets/ongoing.svg"/>
+            </div>
+         </div>
+       </div>
+       <div>
+         <div class="card mt-24 flex mb-2 justify-between">
+            <div>
+              <p class="text-xs pb-2">Critical Projects</p>
+              <p class="text-2xl font-bold">{{criticalProjects}}</p>
+            </div>
+            <div>
+              <img alt="total project"  src="../assets/critical.svg"/>
+            </div>
+         </div>
+       </div>
+       <div>
+         <div class="card mt-24 flex mb-2 justify-between">
+            <div>
+              <p class="text-xs pb-2">Pipeline Projects</p>
+              <p class="text-2xl font-bold">{{pipelineProjects}}</p>
+            </div>
+            <div>
+              <img alt="total project"  src="../assets/pipeline.svg"/>
+            </div>
+         </div>
+       </div>
+       </section>
+     </div>
+     
+    
+    <div class="filter-section flex flex-wrap justify-between mt-24">
+      <div class="flex">
+              <div class="w-300 mr-3">
+                  <!-- <input type="text" id="searchProject" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Search Projects" required formControlName="searchProject" [(ngModel)]="searchTerm" (input)="handleSearch()"> -->
+
+                  <form [formGroup]="searchForm">
+                    <input formControlName="searchTerm" type="text" id="searchProject" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Search Projects"  placeholder="Search">
+                  </form>
+              </div>
+
+              <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm p-6 py-2 dark:hover:bg-blue-700" (click)="handleSearch()">Search</button>
+      </div>
+      <div>
+          <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm p-6 py-2.5 dark:hover:bg-blue-700" (click)="navigateToCreateProject()">Create Projects</button>
+      </div>
     </div>
-   
+  
     <div class="card mt-24">
         <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left text-gray-500">
+            <!-- <table class="w-full text-sm text-left text-gray-500">
               <thead class="text-sm dark-grey">
                 <tr>
                   <th scope="col" class="">Project Name</th>
@@ -66,7 +134,72 @@
                   </td>
                 </tr>
               </tbody>
+            </table> -->
+
+            <table class="w-full text-sm text-left text-gray-500 table-fixed">
+              <thead class="text-sm dark-grey">
+                <tr>
+                  <th scope="col" class="">Project Name</th>
+                  <th scope="col" class="">Project Manager</th>
+                  <th scope="col" class="">Engagement Leader</th>
+                  <th scope="col" class="">Budget</th>
+                  <th scope="col" class="">Start Date</th>
+                  <th scope="col" class="">End Date</th>
+                  <th scope="col" class="">Health</th>
+                  <th scope="col" class="">Status</th>
+                  <th scope="col" class="">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- *ngFor="let project of projects" -->
+                <tr  *ngFor="let project of filteredProjects" class="">
+                  <th scope="row" class="font-medium whitespace-nowrap">
+                    <div class="whitespace-pre-wrap py-2">{{ project.projectName }}</div>
+                  </th>
+                  <td class="">
+                    <div class="whitespace-nowrap">{{ project.projectManager }}</div>
+                  </td>
+                  <td class="">
+                    <div class="whitespace-nowrap">{{ project.projectEngagementLeader }}</div>
+                  </td>
+                  <td>
+                    <div class="whitespace-nowrap">{{ project.projectTotalBudget }}</div>
+                  </td>
+                  <td>
+                    <div class="whitespace-nowrap">{{ project.projectStartDate | date: 'dd/MM/yyyy'}}</div>
+                  </td>
+                  <td>
+                    <div class="whitespace-nowrap">{{ project.projectEndDate | date: 'dd/MM/yyyy' }}</div>
+                  </td>
+                  <td>
+                    <div class="whitespace-nowrap" 
+                    [ngClass]="{
+                      'text-green-500': project.projectHealth === 'Normal',
+                      'text-orange-500': project.projectHealth === 'GoodWill',
+                      'text-red-600': project.projectHealth === 'Critical'
+                    }"
+                    >{{ project.projectHealth }}</div>
+                  </td>
+                  <td>
+                    <span class="p-2 rounded-md"
+                    [ngClass]="{
+                      'bg-blue-100 text-blue-800 text-xs font-medium mr-2  rounded dark:bg-blue-900 dark:text-blue-300': project.projectStatus === 'Active',
+                      'bg-green-100 text-green-800 text-xs font-medium mr-2  rounded dark:bg-green-900 dark:text-green-300': project.projectStatus === 'Completed',
+                      'bg-gray-100 text-gray-800 text-xs font-medium mr-2  rounded dark:bg-gray-700 dark:text-gray-300': project.projectStatus === 'OnHold',
+                      'bg-yellow-100 text-yellow-800 text-xs font-medium mr-2  rounded dark:bg-yellow-900 dark:text-yellow-300': project.projectStatus === 'Upcoming'
+                    }"
+                    >{{ project.projectStatus }}</span>
+                  </td>
+                  <td class="">
+                    <a href="#" class="">View</a>
+                  </td>
+                </tr>
+              </tbody>
             </table>
+            <div class="mt-4" *ngIf="filteredProjects.length === 0">
+              <div class="text-gray-500 text-center">
+                No data available.
+            </div>
         </div>
     </div>
     

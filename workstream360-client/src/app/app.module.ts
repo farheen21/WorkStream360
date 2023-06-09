@@ -31,6 +31,8 @@ import { BudgetsComponent } from './budgets/budgets.component';
 import { TimeManagementComponent } from './time-management/time-management.component';
 import { RisksComponent } from './risks/risks.component';
 import { RouterModule } from '@angular/router';
+import { NgApexchartsModule } from 'ng-apexcharts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +65,8 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -20,8 +20,11 @@ spring:
   application:
     name: RESOURCE-SERVICE
 
-#  application:
-#    name: PAYMENT-SERVICE
-#
-#  config:
-#    import: configserver:http://localhost:9296
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      default-zone: ${EUREKA_SERVER_ADDRESS:http://localhost:8761/eureka}

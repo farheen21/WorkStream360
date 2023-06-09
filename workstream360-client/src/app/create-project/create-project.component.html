@@ -174,22 +174,22 @@
                 <div>
                     <label for="projectTotalBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">
                         <abbr class="text-red-500">*</abbr>Total Budget</label>
-                    <input type="number" formControlName="projectTotalBudget" id="projectTotalBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required>
+                    <input type="number" formControlName="projectTotalBudget" id="projectTotalBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" required (input)="updateRemainingBudget()">
                     <div *ngIf="createProjectForm?.get('projectTotalBudget')?.invalid && createProjectForm?.get('projectTotalBudget')?.touched">
                         <small class="text-red-500">Total Budget is required.</small>
                       </div>
                 </div>
                 <div>
                     <label for="projectBurnedBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">Burned Budget</label>
-                    <input type="number" id="projectBurnedBudget" formControlName="projectBurnedBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name">
+                    <input type="number" id="projectBurnedBudget" formControlName="projectBurnedBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" [value]="burnedBudget" readonly (input)="updateRemainingBudget()">
                 </div>
                 <div>
                     <label for="projectRemainingBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">Remaining Budget</label>
-                    <input type="number" id="projectRemainingBudget" formControlName="projectRemainingBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name">
+                    <input type="number" id="projectRemainingBudget" formControlName="projectRemainingBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name"  [value]="remainingBudget" readonly>
                 </div>
                 <div>
                     <label for="projectTotalBurnedHours" class="block mb-2 text-sm text-gray-900 dark:text-white">Total Burned Hours</label>
-                    <input type="number" id="projectTotalBurnedHours" formControlName="projectTotalBurnedHours" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name">
+                    <input type="number" id="projectTotalBurnedHours" formControlName="projectTotalBurnedHours" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name"  [value]="burnedHours" readonly >
                 </div>
             </div>
         </form>
@@ -198,5 +198,11 @@
 
 
 <div class="card mt-24">
-    <app-add-resource-to-project [projectName]="projectName" [projectId]="projectId" ></app-add-resource-to-project>
+    <!-- <app-add-resource-to-project [projectName]="projectName" [projectId]="projectId" (resourceAdded)="handleResourceAdded($event)" ></app-add-resource-to-project> -->
+
+    <app-add-resource-to-project [projectName]="projectName" [projectId]="projectId" 
+                                (allocatedBudgetChanged)="handleTotalBudgetChange($event)"
+                                (burnedHoursChanged)="handleTotalBurnedHoursChange($event)"
+                                (addResourceClicked)="onAddResourceClicked()"
+     ></app-add-resource-to-project>
 </div>
