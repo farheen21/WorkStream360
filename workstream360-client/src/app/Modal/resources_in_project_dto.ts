@@ -7,5 +7,6 @@ export interface AddResourcetoProject {
     assignmentStartDate: string;
     assignmentEndDate: string;
     projectID: number;
+    resourceId: number
   }
   

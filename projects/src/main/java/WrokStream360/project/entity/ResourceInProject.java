@@ -21,7 +21,7 @@ public class ResourceInProject {
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
-
+    private Long resourceId;
     private String role;
     private String  resource ;
     private String  allocatedBudget;

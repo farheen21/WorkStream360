@@ -6,7 +6,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/resourcesdb
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/timecardDb
     username: root
     password: Farheen@mtx2021
     driverClassName: com.mysql.cj.jdbc.Driver
@@ -21,11 +21,49 @@ spring:
   application:
     name: TIME-MANAGEMENT-SERVICE
 
-#eureka:
-#  instance:
-#    prefer-ip-address: true
-#  client:
-#    fetch-registry: true
-#    register-with-eureka: true
-#    service-url:
-#      default-zone: ${EUREKA_SERVER_ADDRESS:http://localhost:8761/eureka}
+# RabbitMQ Configuration
+
+# General
+listeners:
+  - amqp://localhost:5672
+
+# Log Levels
+log_levels:
+  - connection: debug
+  - channel: info
+  - queue: warning
+
+# Queues
+queues:
+  - name: PROJECT_QUEUE
+    durable: true
+    auto_delete: false
+
+# Exchanges
+exchanges:
+  - name: PROJECT_EXCHANGE
+    type: topic
+    durable: true
+
+# Bindings
+bindings:
+  - source: PROJECT_EXCHANGE
+    destination: PROJECT_QUEUE
+    destination_type: queue
+    routing_key: WorkStream360
+
+# Users
+users:
+  - name: guest
+    password: guest
+    tags: guest
+
+  - name: admin
+    password: admin
+    tags: administrator
+
+
+# Plugins
+plugins:
+  - rabbitmq_management
+  - rabbitmq_mqtt

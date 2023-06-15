@@ -30,9 +30,9 @@ public class ProjectController {
     // View project from DB to client
 
     @GetMapping("/{projectId}")
-    public ResponseEntity<ProjectResponse> getProjectById(@PathVariable("projectId") long projectId){
-        ProjectResponse projectResponse = projectService.getProjectById(projectId);
-        return new ResponseEntity<>( projectResponse, HttpStatus.OK);
+    public ResponseEntity<AllProjectResponse> getProjectById(@PathVariable("projectId") long projectId){
+        AllProjectResponse allProjectResponse = projectService.getProjectById(projectId);
+        return new ResponseEntity<>( allProjectResponse, HttpStatus.OK);
     }
 
 
@@ -81,5 +81,15 @@ public class ProjectController {
         return projectService.getAllProjects();
     }
 
+    @GetMapping("/{projectId}/resources")
+    public List<ResourceByProjectName> getResourcesByProjectId(@PathVariable long projectId) {
+        return projectService.getResourcesByProjectId(projectId);
+    }
+
+    @GetMapping("/resource/{resourceName}")
+    public ResponseEntity<List<AllProjectResponse>> getProjectsByResource(@PathVariable String resourceName) {
+        List<AllProjectResponse> projects = projectService.getProjectsByResource(resourceName);
+        return new ResponseEntity<>(projects, HttpStatus.OK);
+    }
 
 }

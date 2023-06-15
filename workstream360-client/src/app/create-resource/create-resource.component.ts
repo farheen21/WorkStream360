@@ -14,7 +14,8 @@ import { ResourceService } from '../service/resource.service';
 export class CreateResourceComponent {
   createResourceForm !: FormGroup;
   constructor(private formBuilder: FormBuilder , private resourceService : ResourceService) { }
-
+  showToast: boolean = false;
+  
   ngOnInit() {
     this.createResourceForm = this.formBuilder.group({
       resourceFirstname: ['', Validators.required],
@@ -31,11 +32,7 @@ export class CreateResourceComponent {
     });
   }
   
-  // onSubmit() {
-  //   if (this.createResourceForm.invalid) {
-  //     return;
-  //   }
-  // }
+  
 
   saveForm() {
     const formData = this.createResourceForm.value;
@@ -53,6 +50,10 @@ export class CreateResourceComponent {
     this.resourceService.addResource(formData).subscribe(
     resourceId => {
       console.log('Resource added successfully. ID:', resourceId);
+      this.showToast = true; // Set showToast to true
+      setTimeout(() => {
+        this.showToast = false; // Hide the toast after a certain time
+      }, 5000);
       // Do further operations or show success message
     },
     error => {

@@ -24,7 +24,6 @@ import static org.springframework.beans.BeanUtils.copyProperties;
 public class ProjectServiceImp implements ProjectService{
 
 
-
     @Autowired
     RabbitMQJasonProducer rabbitMQJasonProducer;
 
@@ -53,23 +52,19 @@ public class ProjectServiceImp implements ProjectService{
                 .projectRemainingBudget(projectRequest.getProjectRemainingBudget())
                 .projectTotalBurnedHours(projectRequest.getProjectTotalBurnedHours())
                 .build();
-
-//        rabbitMqProducer.sendMessage(project);
         projectRepository.save(project);
         log.info("Project Created");
-        log.info("Message send to producer");
-        rabbitMQJasonProducer.sendJasonMessage(project);
         return project.getProjectId();
     }
 
 
     @Override
-    public ProjectResponse getProjectById(long projectId) {
+    public AllProjectResponse getProjectById(long projectId) {
         log.info("Getting the project information for product id: {}" , projectId);
         Project project = projectRepository.findById(projectId).orElseThrow();
-        ProjectResponse projectResponse = new ProjectResponse();
-        copyProperties(project , projectResponse);
-        return projectResponse;
+        AllProjectResponse allProjectResponse = new AllProjectResponse();
+        copyProperties(project , allProjectResponse);
+        return allProjectResponse;
     }
 
     @Override
@@ -78,7 +73,7 @@ public class ProjectServiceImp implements ProjectService{
         Project project = projectRepository.findById(projectResourceRequest.getProjectID())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Project with ID: " + projectResourceRequest.getProjectID()));
         log.info("Got this from client as project: {}", project);
-
+        String projectName = project.getProjectName();
         ResourceInProject resourceInProject = ResourceInProject.builder()
                 .resource(projectResourceRequest.getResource())
                 .role(projectResourceRequest.getRole())
@@ -87,12 +82,28 @@ public class ProjectServiceImp implements ProjectService{
                 .assignmentStartDate(projectResourceRequest.getAssignmentEndDate())
                 .assignmentEndDate(projectResourceRequest.getAssignmentEndDate())
                 .burnedHours(projectResourceRequest.getBurnedHours())
+                .resourceId(projectResourceRequest.getResourceId())
                 .project(project)
                 .build();
 
         resourcesInProjectRepository.save(resourceInProject);
         log.info("this is new resource added in project: {}", resourceInProject);
-        log.info("Resource added");
+
+
+        // Create a separate object to send to the RabbitMQ queue
+        ResourceByProjectName messageObject = new ResourceByProjectName();
+        messageObject.setProjectName(projectName);
+        messageObject.setProjectID(projectResourceRequest.getProjectID());
+        messageObject.setResourceId(projectResourceRequest.getResourceId());
+        messageObject.setResource(projectResourceRequest.getResource());
+        messageObject.setRole(projectResourceRequest.getRole());
+        messageObject.setAllocatedBudget(projectResourceRequest.getAllocatedBudget());
+        messageObject.setAllocatedHours(projectResourceRequest.getAllocatedHours());
+
+        log.info("Message sent to producer");
+        rabbitMQJasonProducer.sendJasonMessage(messageObject);
+
+
         return resourceInProject.getAllocationId();
     }
 
@@ -143,20 +154,6 @@ public class ProjectServiceImp implements ProjectService{
         return project.getProjectId(); // Return the updated project ID
     }
 
-//    @Override
-//    public long updateBudgetData(Long projectId, ProjectBudgetChange projectBudgetChange) {
-//
-//        log.info("Updating project budget data...");
-//        Project project = projectRepository.findById(projectId)
-//                .orElseThrow(() -> new IllegalArgumentException("Invalid Project ID"));
-//        log.info("got this id: {}", projectId);
-//          project.setProjectTotalBurnedHours(projectBudgetChange.getTotalBurnedHours());
-//          project.setProjectBurnedBudget(projectBudgetChange.getProjectBurnedBudget());
-//          project.setProjectRemainingBudget(projectBudgetChange.getProjectRemainingBudget());
-//          projectRepository.save(project);
-//            log.info("Project Budget data updated ");
-//            return project.getProjectId();
-//    }
 
     @Override
     public long updateBudgetData(Long projectId, ProjectBudgetChange projectBudgetChange) {
@@ -192,5 +189,52 @@ public class ProjectServiceImp implements ProjectService{
 
         return allProjectResponses;
     }
+
+    @Override
+    public List<ResourceByProjectName> getResourcesByProjectId(long projectId) {
+        log.info("Getting resources for project with ID: {}", projectId);
+
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Project ID: " + projectId));
+
+        List<ResourceInProject> resources = resourcesInProjectRepository.findByProject(project);
+
+        List<ResourceByProjectName> resourceResponses = new ArrayList<>();
+        for (ResourceInProject resource : resources) {
+            ResourceByProjectName resourceResponse = new ResourceByProjectName();
+            resourceResponse.setProjectID(projectId);
+            resourceResponse.setResource(resource.getResource());
+            resourceResponse.setRole(resource.getRole());
+            resourceResponse.setAllocatedBudget(resource.getAllocatedBudget());
+            resourceResponse.setAllocatedHours(resource.getAllocatedHours());
+            resourceResponse.setProjectName(project.getProjectName());
+            resourceResponses.add(resourceResponse);
+        }
+
+        return resourceResponses;
+    }
+
+
+
+
+    @Override
+    public List<AllProjectResponse> getProjectsByResource(String resourceName) {
+        log.info("Getting projects for resource: {}", resourceName);
+
+        List<ResourceInProject> resources = resourcesInProjectRepository.findByResource(resourceName);
+
+        List<AllProjectResponse> allProjectResponses = new ArrayList<>();
+
+        for (ResourceInProject resource : resources) {
+            Project project = resource.getProject();
+            AllProjectResponse allProjectResponse = new AllProjectResponse();
+            copyProperties(project, allProjectResponse);
+            allProjectResponses.add(allProjectResponse);
+        }
+
+        return allProjectResponses;
+    }
+
+
 
 }

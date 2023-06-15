@@ -89,3 +89,6 @@ permissions:
 plugins:
   - rabbitmq_management
   - rabbitmq_mqtt
+
+
+#docker run --rm -it -p 15672:15672 -p 5672:5672 rabbitmq:3.11.18-management

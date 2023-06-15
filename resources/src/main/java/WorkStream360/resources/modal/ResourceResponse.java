@@ -7,6 +7,7 @@ import lombok.Data;
 
 @Data
 public class ResourceResponse {
+    private Long resourceId;
     private String resourceFirstName;
     private String resourceLastName;
     private Long resourcePhoneNumber;

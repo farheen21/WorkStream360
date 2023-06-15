@@ -27,5 +27,15 @@ export class ResourceService {
     const url = `${this.apiUrl}/engagementLeaders?query=${query}`;
     return this.http.get<string[]>(url);
   }
+
+  getAllResources(): Observable<Resource[]> {
+    // const url = `${this.apiUrl}/getAllResources`;
+    return this.http.get<Resource[]>(this.apiUrl);
+  }
+   
+  getResourceById(resourceId: number): Observable<Resource> {
+    const url = `${this.apiUrl}/${resourceId}`;
+    return this.http.get<Resource>(url);
+  }
 }
 

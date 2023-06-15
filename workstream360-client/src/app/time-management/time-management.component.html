@@ -1,1 +1,88 @@
-<p>time-management works!</p>
+
+
+<div class="main-timeCards">
+  <div class="flex-auto flex gap-px">
+    <div class="heading-block pr-5">
+      <h1 class="page-heading">timeCards Management</h1>
+    </div>
+  </div>
+  <div id="accordion" class="space-y-4">
+    <div *ngFor="let item of accordionItems" class="accordion-item">
+      <h2
+        class="accordion-heading bg-white border border-gray-200 cursor-pointer flex items-center justify-between p-4 rounded-lg"
+        (click)="toggleAccordion(item)">
+        {{ item.projectName }}
+        <svg class="w-4 h-4 transform transition-transform" [class.rotate-180]="item.expanded" fill="currentColor"
+          viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </h2>
+      <div class="accordion-body" [hidden]="!item.expanded">
+        <div class="accordion-body-inner-body timecard-accordion">
+
+          <table class="w-full text-sm text-left text-gray-500 p-4">
+            <thead class="text-sm dark-grey">
+              <tr>
+                <th>Resource</th>
+                <th>Variance</th>
+                <th>Forecast</th>
+                <th *ngFor="let dayData of daysData; let i = index">{{ getDayLabel(i) }}</th>
+                <th>Total</th>
+                <th>Notes</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let card of timeCardsByProject[item.projectId]">
+                <tr>
+                  <td rowspan="2" data-label="Resource">
+                    <div class="flex items-start">
+                      <img src="../assets/profile.svg" />
+                      <div class="item-center ml-1">
+                        <div class="txt-dark">{{ card.resourceName }}</div>
+                        <div>{{ card.resourceRole }}</div>
+                        <div>Rate: <b class="txt-blue">${{ card.budget }}</b></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td data-label="Variance">{{ calculateVariance() }}%</td>
+                  <td data-label="Forecast" class="txt-dark"><b>40</b></td>
+                  <td *ngFor="let dayData of daysData; let i = index">
+                    <input type="number" id="first_name"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      placeholder="8" required [(ngModel)]="daysData[i]" (input)="calculateTotal()">
+                  </td>
+                  <td data-label="Total" class="txt-dark"><b>{{ calculateTotal() }}</b></td>
+                  <td data-label="Notes">
+                    <a>
+                      <img src="../assets/notes.svg" alt="">
+                    </a>
+                  </td>
+                  <td data-label="Status" [ngClass]="{
+                      'text-green-500': status === 'Approved',
+                      'text-orange-500': status === 'Pending',
+                      'text-red-600': status === 'Rejected'
+                    }">{{ status }}</td>
+                </tr>
+                <tr>
+                  <td class="slds-p-around--none" data-label="Actions" colspan="12">
+                    <div>
+                      <button type="button"
+                        class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm px-4 py-2 mr-3 mb-2 dark:hover:bg-blue-700"
+                        (click)="handleApproved()">Approve</button>
+                      <button type="button"
+                        class="focus:outline-none border-red-600 border text-red-600 focus:ring-4 focus:ring-red-300 font-medium text-sm px-4 py-2 rounded"
+                        (click)="handleRejected()">Reject</button>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

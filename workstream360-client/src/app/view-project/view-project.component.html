@@ -1,1 +1,202 @@
-<p>view-project works!</p>
+
+<div class="flex flex-wrap justify-between">
+    <div class="flex-auto flex gap-px">
+        <div class="heading-block pr-5">
+            <h1 class="page-heading">NYC - Project Enchanced Bugets</h1>
+            <div class="links-section">
+                <a class="text-primary text-xs">Projects</a>
+                <span> / </span>
+                <a class="current text-xs"> NYC - Project Enchanced Bugets </a>
+            </div>
+        </div>
+        <!-- <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create Request</button>
+         -->
+        <!-- <lightning-button variant="brand" icon-name="utility:add" label="Create Request"
+            onclick={openCreateRequestModal}></lightning-button> -->
+    </div>
+    <div class="text-center">
+        <button type="button" class="text-white secondary-button font-medium rounded-md text-sm px-4 py-2 mr-3 mb-2 hover:bg-slate-100">Back</button>
+
+        <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm px-4 py-2 mr-3 mb-2 dark:hover:bg-blue-700" (click)="onEdit()">Edit</button>
+
+        <button type="button" class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm px-4 py-2 mr-3 mb-2 dark:hover:bg-blue-700" (click)="navigateBackToProject()">Back</button>
+    </div>
+</div>
+
+<div class="card">
+    <div class="flex justify-between">
+        <h2 class="font-semibold text-base pb-5">Project Detail
+            <span> | </span>
+            <span class="font-medium color-success text-base">{{projectStatus}}</span>
+        </h2>
+        <div>
+            <span class="color-grey ">Health: </span>
+            <span class="text-base font-medium color-warning">{{projectHealth}}</span>
+        </div>
+    </div>
+
+
+   <div class="form feilds">
+        <form [formGroup]="createProjectForm">
+            <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div>
+                    <label for="projectName" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                    Project Name</label>
+                    <input type="text" id="projectName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name"  formControlName="projectName" 
+                     [readonly]="true" [(ngModel)]="projectName">
+                    
+                </div>
+                <div>
+                    <label for="type" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                        Type</label>
+                    <select id="type" formControlName="projectType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Select  project Type"  
+                     [disabled]="disabled">
+                    <option value="Billable" disabled>Billable</option>
+                    <option value="Nonbillable" disabled>Nonbillable</option>
+                    {{project.projectType}}
+                    </select>
+                    
+                </div>
+
+                <div class="relative">
+                    <label for="datepicker" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                        Start Date</label>
+                    <input matInput [matDatepicker]="picker" id="datepicker" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700" placeholder="MM/DD/YYYY"  formControlName="projectStartDate" [readonly]="true" [(ngModel)]="projectStartDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker" class="absolute inset-y-3 right-0 mt-2.5 mr-2.5 cursor-pointer" disabled>
+                    <mat-icon>calendar_today</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker class="absolute top-full left-0"></mat-datepicker>
+                    
+                </div>
+                
+                <div class="relative">
+                    <label for="datepicker" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                        End Date</label>
+                    <input matInput id="datepicker1" [matDatepicker]="picker1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700" placeholder="MM/DD/YYYY"  formControlName="projectEndDate" [readonly]="true" [(ngModel)]="projectEndDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker1" class="absolute inset-y-3 right-0 mt-2.5 mr-2.5 cursor-pointer" disabled>
+                    <mat-icon>calendar_today</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker1 class="absolute top-full left-0" ></mat-datepicker>
+                    
+                </div>
+                
+                <div>
+                    <label for="ProjectManager" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                      Project Manager</label>
+                    <input type="text" formControlName="projectManager" id="ProjectManager" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700"
+                      placeholder="Enter Project Name" [readonly]="true" [(ngModel)]="projectManager">
+                  </div>
+                  <div>
+                    <label for="projectEngagementLeader" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                      Engagement Leader</label>
+                    <input type="text" formControlName="projectEngagementLeader" id="projectEngagementLeader" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700"
+                      placeholder="Enter Project Name" [readonly]="true" 
+                      [(ngModel)]="projectEngagementLeader" [value]=projectEngagementLeader>
+                    
+                  </div>
+
+                <div>
+                    <label for="projectStatus" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                        project Status</label>
+                    <select id="projectStatus" formControlName="projectStatus" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Select Type" [(ngModel)]="projectStatus" [attr.disabled]="true">
+                    <option value="Active" disabled>Active</option>
+                    <option value="Completed" disabled>Completed</option>
+                    <option value="OnHold" disabled>On Hold</option>
+                    <option value="Upcoming" disabled>Upcoming</option>
+                    
+                    </select>
+                    
+                </div>
+
+                <div>
+                    <label for="projectHealth" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                        Health</label>
+                    <select id="projectHealth" formControlName="projectHealth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Select Type" [(ngModel)]="projectHealth" [attr.disabled]="true">
+                    <option value="Normal" disabled>Normal</option>
+                    <option value="Critical" disabled>Critical</option>
+                    <option value="Goodwill" disabled>Goodwill</option>
+                    </select>
+                    
+                </div>
+
+                </div>
+                <div>
+                <label for="projectDescription" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                    Description</label>
+                <textarea id="projectDescription" formControlName="projectDescription" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter projectDescription" maxlength="255"
+                [readonly]="true" [(ngModel)]="projectDescription"></textarea>
+                
+               </div>
+              <h2 class="font-semibold text-base pt-6 pb-5"> Budget Details</h2>
+                <div class="grid gap-6 mb-6 md:grid-cols-2">
+                    <div>
+                        <label for="projectTotalBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">
+                            Total Budget</label>
+                        <input type="number" formControlName="projectTotalBudget" id="projectTotalBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" 
+                        [readonly]="true" [(ngModel)]="projectTotalBudget">
+                        
+                    </div>
+                    <div>
+                        <label for="projectBurnedBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">Burned Budget</label>
+                        <input type="number" id="projectBurnedBudget" formControlName="projectBurnedBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name" [(ngModel)]="burnedBudget" readonly >
+                    </div>
+                    <div>
+                        <label for="projectRemainingBudget" class="block mb-2 text-sm text-gray-900 dark:text-white">Remaining Budget</label>
+                        <input type="number" id="projectRemainingBudget" formControlName="projectRemainingBudget" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name"  readonly>
+                    </div>
+                    <div>
+                        <label for="projectTotalBurnedHours" class="block mb-2 text-sm text-gray-900 dark:text-white">Total Burned Hours</label>
+                        <input type="number" id="projectTotalBurnedHours" formControlName="projectTotalBurnedHours" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700" placeholder="Enter Project Name"  readonly >
+                    </div>
+                </div>
+        </form>
+   </div>  
+</div>
+
+
+<div class="card mt-24">
+    <div class="relative overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500">
+          <thead class="text-sm dark-grey">
+            <tr>
+              <th scope="col" class="">Resource Role</th>
+              <th scope="col" class="">Resource</th>
+              <th scope="col" class="">Allocated Budget</th>
+              <th scope="col" class="">Allocated Hours</th>
+              <th scope="col" class="">Burned Hours</th>
+              <th scope="col" class="">Assignment Start Date</th>
+              <th scope="col" class="">Assignment End Date</th>
+              <th scope="col" class="">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let resource of resourceInProject" class="">
+              <th scope="row" class="font-medium whitespace-nowrap">
+                <div class="whitespace-nowrap">{{ resource.role }}</div>
+              </th>
+              <td class="">
+                <div class="whitespace-nowrap">{{ resource.resource }}</div>
+              </td>
+              <td class="">
+                <div class="whitespace-nowrap">{{ resource.allocatedBudget }}</div>
+              </td>
+              <td>
+                <div class="whitespace-nowrap">{{ resource.allocatedHours }}</div>
+              </td>
+              <td>
+                <div class="whitespace-nowrap">{{ resource.burnedHours }}</div>
+              </td>
+              <td>
+                <div class="whitespace-nowrap">{{ resource.assignmentStartDate | date: 'dd/MM/yyyy' }}</div>
+              </td>
+              <td>
+                <div class="whitespace-nowrap">{{ resource.assignmentEndDate  | date: 'dd/MM/yyyy' }}</div>
+              </td>
+              <td class="">
+                <a href="#" class="">View Timecard</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div>

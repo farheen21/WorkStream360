@@ -1,5 +1,6 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,7 @@ export class HeaderComponent {
 
 
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef ) {}
+  constructor(private renderer: Renderer2, private elementRef: ElementRef , private router : Router) {}
   isDropdownOpen: boolean = false;
 
   toggleDropdown(): void {
@@ -51,5 +52,9 @@ export class HeaderComponent {
         this.renderer.addClass(sidebar, 'close');
       }
     }
+  }
+
+  navigateToProfile(){
+    this.router.navigateByUrl('/profile');
   }
 }

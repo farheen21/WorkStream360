@@ -8,6 +8,7 @@ public class ProjectResourceRequest {
     private Long projectID;
     private String role;
     private String  resource ;
+    private Long resourceId;
     private String  allocatedBudget;
     private String  allocatedHours;
     private String   burnedHours;

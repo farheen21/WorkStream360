@@ -209,5 +209,8 @@ export class ProjectsComponent {
       this.filteredProjects = this.projects;
     }
   }
-  
+
+  navigateToViewProject(projectId : number){
+    this.router.navigate(['project', projectId]);
+  }
 }

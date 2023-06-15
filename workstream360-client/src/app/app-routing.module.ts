@@ -7,6 +7,9 @@ import { TimeManagementComponent } from './time-management/time-management.compo
 import { ProjectsComponent } from './projects/projects.component';
 import { RisksComponent } from './risks/risks.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
+import { CreateResourceComponent } from './create-resource/create-resource.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ViewProjectComponent } from './view-project/view-project.component';
 
 
 const routes: Routes = [
@@ -14,10 +17,13 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'resources', component: ResourcesComponent },
   { path: 'budget-dashboard', component: BudgetsComponent },
-  { path: 'time-management', component: TimeManagementComponent },
+  { path: 'timecards', component: TimeManagementComponent },
   { path: 'project', component: ProjectsComponent },
   { path: 'risks', component: RisksComponent },
   { path: 'create-project', component: CreateProjectComponent },
+  {path: 'create-resource' , component: CreateResourceComponent},
+  {path : 'resource/:resourceId', component: ProfileComponent},
+  {path : 'project/:projectId', component: ViewProjectComponent},
 
 ];
 @NgModule({

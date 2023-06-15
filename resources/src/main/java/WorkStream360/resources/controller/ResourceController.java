@@ -52,4 +52,19 @@ public class ResourceController {
     public List<String> getAllEngagementLeaders() {
         return resourceService.getAllEngagementLeaders();
     }
+
+
+    @GetMapping
+    public ResponseEntity<List<ResourceResponse>> getAllResources() {
+        List<ResourceResponse> resources = resourceService.getAllResources();
+        return ResponseEntity.ok(resources);
+    }
+
+//    @GetMapping("/profile/{resourceName}")
+//    public ResponseEntity<List<ProjectResponse>> getProjectsByResource(@PathVariable String resourceName) {
+//        List<ProjectResponse> projects = projectService.getProjectsByResource(resourceName);
+//        return new ResponseEntity<>(projects, HttpStatus.OK);
+//    }
+
 }
+

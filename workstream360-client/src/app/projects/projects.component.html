@@ -191,7 +191,7 @@
                     >{{ project.projectStatus }}</span>
                   </td>
                   <td class="">
-                    <a href="#" class="">View</a>
+                    <a [routerLink]="['resource', project.projectId]" (click)="navigateToViewProject(project.projectId)">View</a>
                   </td>
                 </tr>
               </tbody>

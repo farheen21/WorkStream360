@@ -8,7 +8,7 @@ public interface ProjectService {
     long addProject(ProjectRequest projectRequest);
 
 
-    ProjectResponse getProjectById(long projectId);
+    AllProjectResponse getProjectById(long projectId);
 
     long addResourceToProject(ProjectResourceRequest projectResourceRequest);
 
@@ -21,4 +21,8 @@ public interface ProjectService {
     long updateBudgetData(Long projectId, ProjectBudgetChange projectBudgetChange);
 
     List<AllProjectResponse> getAllProjects();
+
+    List<ResourceByProjectName> getResourcesByProjectId(long projectId);
+
+    List<AllProjectResponse> getProjectsByResource(String resourceName);
 }

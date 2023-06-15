@@ -47,4 +47,134 @@ table {
 }
 
 
-  
+//Timecard flow
+.timecard-e-accordion{
+	lightning-accordion-section{
+		section{
+			padding: 0;
+		}
+		button.slds-button{
+			color: unset;
+		}
+		.slds-accordion__summary{
+			padding: 0; 
+			margin: 0px;
+			&-heading{
+				padding: 0;
+				font-size: 16px;
+				font-weight: 500;
+				font-family: $ux_font;
+				button{
+					flex-direction: row-reverse;
+					justify-content: space-between;
+					.slds-accordion__summary-content{
+						position: relative;
+						width: fit-content;
+						// &::before{
+						// 	content: '|';
+						// 	position: absolute;
+						// 	font-size: 24px;
+						// 	font-weight: 100;
+						// 	line-height: 24px;
+						// 	color: $ux_secondary-text;
+						// 	right: 49px;
+						// }
+						&::after{
+							padding-left: 1px;
+							content: ' | Active';
+							color: $ux_success;
+						}
+					}
+					// svg{
+					// 	background: $ux_primary-color;
+					// 	fill: $ux_white;
+					// 	padding: 2px;
+					// 	border-radius: 4px;
+					// }
+				}
+			}
+		}
+		.slds-accordion__section.slds-is-open .slds-accordion__summary{
+			border-bottom: 1px solid $ux_table_border; 
+			padding: 0 0 20px 0; 
+		}
+	}
+	table{
+		th{
+			font-weight: 500;
+		}
+		border-spacing: 0 0.75rem;
+		border-collapse: separate;
+		td{
+			text-align: center;
+    		border: 1px solid rgba(137, 151, 189, 0.6);
+		}
+	} 
+}
+.timecard-accordion{
+	table{
+		th{
+			font-weight: 500;
+		}
+		td {
+			input {
+				width:50px
+			}
+		}
+		border-spacing: 0 0.75rem;
+		border-collapse: separate;
+		tr:nth-child(odd){
+			height: 54px;
+			td:first-child{
+				vertical-align: top;
+			}
+			td:nth-child(n+4){
+				text-align: center;
+				background: $ux_fill;
+				border: 1px solid rgba(#8997BD, 0.6);
+				&+td{
+					border-left: none;
+				}
+			} 
+			td:nth-last-child(-n+2){
+				background-color: transparent !important; 
+			}
+		}
+		tr:nth-child(even){
+			border-top: none;
+			position: relative;
+			td{
+				height: 60px;
+				vertical-align: top;
+				text-align: right;
+			}
+			&::after {
+				content: " ";
+				width: 100%;
+				background: $ux_table_border;
+				height: 1px;
+				position: absolute;
+				bottom: 5px;
+				left: 0;
+			}
+		}
+		tr:last-child{ 
+			&::after {
+				background: transparent;
+			}
+		}
+		.slds-button.slds-button_outline-brand{
+			border-color: $ux_error;
+			color: $ux_error;
+		}
+		&+.d-flex{
+			margin: -20px -24px;
+			padding: 20px 24px;
+			background: #FBFBFB;
+		}
+		[data-label="Actions"]{
+			padding: 0 !important;
+		}
+	}   
+	
+}

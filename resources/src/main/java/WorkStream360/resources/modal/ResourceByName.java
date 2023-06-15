@@ -6,4 +6,6 @@ import lombok.Data;
 public class ResourceByName {
     private String resourceName;
     private String roleName;
+
+    private Long resourceId;
 }

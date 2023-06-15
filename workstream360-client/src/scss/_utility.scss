@@ -52,3 +52,401 @@
 .w-300{
  width: 313px;
 }
+
+.accordion-body-inner-body{
+  padding: 20px;
+  background: #deecff;
+}
+
+
+
+#toast-success {
+  z-index: 9999;
+  opacity: 0;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-in forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+
+
+// *********************************** Profile **************************
+
+
+.profile-card{
+	font-family: $ux_headingfont;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 24px;
+	margin-bottom: 24px;
+	.profile-header{
+		padding: 35px 24px;
+		color: $ux_white;
+		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+		background-color: rgba($ux_primary-dark, 1);
+		border-radius: 4px 4px 0px 0px;
+		.profile img{
+			height: auto; 
+			width: 110px;
+			align-self: center; 
+			border-radius: 50%;
+			border: 3px solid rgba($ux_white, 0.075);
+		} 
+		h2{
+			display: inline;
+			font-family: $ux_font;
+			font-size: 24px;
+			font-weight: 600;
+			line-height: 24px;
+		}
+		.contact{
+			div+div{ 
+				margin-top:0.5rem;
+			}
+		}
+	}
+	.section-buttons{
+		padding: 24px 24px;
+		background: $ux_white;
+		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+		border-radius: 0px 0px 4px 4px;
+		lightning-button-group{
+			width: 100%;
+			background-color: $ux_light;
+			lightning-button{
+				.slds-button{ 
+					border: 0;
+					border-radius: 0;
+					background: transparent;
+					color: $ux_default-text;
+					height: 36px;
+					padding: 6px 17px;
+				}
+				&.selected{
+					.slds-button{
+						color: $ux_white;
+						font-weight: 600;
+						background: linear-gradient(180deg, $ux_secondary-color 0%, $ux_primary-color 100%);
+						box-shadow: 0px 7px 14px rgba(8, 34, 72, 0.25);
+					}
+				}
+			}
+		}
+	}
+	+.slds-card{
+		h2{
+			font-size: 15px;
+			font-weight: 600;
+			font-family: $ux_font;
+			line-height: 24px;
+		}
+		.slds-grid{
+			.slds-col+.slds-col{
+				margin-top: 0.75rem
+			}
+		} 
+	}
+	
+} 
+
+.skills{
+	&-heading{
+		border-bottom: 1px solid #C4C4C4;
+		margin-bottom: 0.5rem;
+		font-family: $ux_headingfont;
+		padding-bottom: 8px;
+		div:first-child{
+			font-size: 14px;
+    		font-weight: 600;	
+			text-transform: uppercase;
+		}
+	}
+	&-rating{
+	.star::before{
+			content: '\2605';
+			color: #FFDE00;
+			padding-right: 8px;
+			line-height: 35px;
+			font-size: 30px;
+			-webkit-font-smoothing: auto;
+		}
+	}
+}
+
+//Timecard flow
+.timecard-e-accordion{
+	lightning-accordion-section{
+		section{
+			padding: 0;
+		}
+		button.slds-button{
+			color: unset;
+		}
+		.slds-accordion__summary{
+			padding: 0; 
+			margin: 0px;
+			&-heading{
+				padding: 0;
+				font-size: 16px;
+				font-weight: 500;
+				font-family: $ux_font;
+				button{
+					flex-direction: row-reverse;
+					justify-content: space-between;
+					.slds-accordion__summary-content{
+						position: relative;
+						width: fit-content;
+						// &::before{
+						// 	content: '|';
+						// 	position: absolute;
+						// 	font-size: 24px;
+						// 	font-weight: 100;
+						// 	line-height: 24px;
+						// 	color: $ux_secondary-text;
+						// 	right: 49px;
+						// }
+						&::after{
+							padding-left: 1px;
+							content: ' | Active';
+							color: $ux_success;
+						}
+					}
+					// svg{
+					// 	background: $ux_primary-color;
+					// 	fill: $ux_white;
+					// 	padding: 2px;
+					// 	border-radius: 4px;
+					// }
+				}
+			}
+		}
+		.slds-accordion__section.slds-is-open .slds-accordion__summary{
+			border-bottom: 1px solid $ux_table_border; 
+			padding: 0 0 20px 0; 
+		}
+	}
+	table{
+		th{
+			font-weight: 500;
+		}
+		border-spacing: 0 0.75rem;
+		border-collapse: separate;
+		td{
+			text-align: center;
+    		border: 1px solid rgba(137, 151, 189, 0.6);
+		}
+	} 
+}
+.timecard-accordion{
+	lightning-accordion-section{
+		section{
+			padding: 0;
+		}
+		button.slds-button{
+			color: unset;
+		}
+		.slds-accordion__summary{
+			padding: 0; 
+			margin: 0px;
+			&-heading{
+				padding: 0;
+				font-size: 16px;
+				font-weight: 500;
+				font-family: $ux_font;
+				button{
+					flex-direction: row-reverse;
+					justify-content: space-between;
+					.slds-accordion__summary-content{
+						position: relative;
+						width: fit-content;
+						// &::before{
+						// 	content: '|';
+						// 	position: absolute;
+						// 	font-size: 24px;
+						// 	font-weight: 100;
+						// 	line-height: 24px;
+						// 	color: $ux_secondary-text;
+						// 	right: 49px;
+						// }
+						&::after{
+							padding-left: 1px;
+							content: ' | Active';
+							color: $ux_success;
+						}
+					}
+					// svg{
+					// 	background: $ux_primary-color;
+					// 	fill: $ux_white;
+					// 	padding: 2px;
+					// 	border-radius: 4px;
+					// }
+				}
+			}
+		}
+		.slds-accordion__section.slds-is-open .slds-accordion__summary{
+			border-bottom: 1px solid $ux_table_border; 
+			padding: 0 0 20px 0; 
+		}
+	}
+	table{
+		th{
+			font-weight: 500;
+		}
+		border-spacing: 0 0.75rem;
+		border-collapse: separate;
+		tr:nth-child(odd){
+			height: 34px;
+			td:first-child{
+				vertical-align: top;
+			}
+			td:nth-child(n+4){
+				text-align: center;
+				background: $ux_fill;
+				border: 1px solid rgba(#8997BD, 0.6);
+				&+td{
+					border-left: none;
+				}
+			} 
+			td:nth-last-child(-n+2){
+				background-color: transparent !important; 
+			}
+		}
+		tr:nth-child(even){
+			border-top: none;
+			position: relative;
+			td{
+				height: 60px;
+				vertical-align: top;
+				text-align: right;
+			}
+			&::after {
+				content: " ";
+				width: 100%;
+				background: $ux_table_border;
+				height: 1px;
+				position: absolute;
+				bottom: 5px;
+				left: 0;
+			}
+		}
+		tr:last-child{ 
+			&::after {
+				background: transparent;
+			}
+		}
+		.slds-button.slds-button_outline-brand{
+			border-color: $ux_error;
+			color: $ux_error;
+		}
+		&+.d-flex{
+			margin: -20px -24px;
+			padding: 20px 24px;
+			background: #FBFBFB;
+		} 
+	}   
+	
+}
+
+@media (max-width: $screen-xs) {
+	.timecard-accordion{
+		table{
+			tr:nth-child(odd){
+				td:nth-child(n+4){
+					&+td{
+						border-left: 1px solid rgba(#8997BD, 0.6);
+					}
+				} 
+			} 
+			tr:nth-child(even){
+				td{
+					text-align: left;
+					height: 85px;
+					padding: 0.75rem !important;
+					vertical-align: middle;
+				}
+			}
+		}  
+	}
+}
+
+.resume-section{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+	font-family: $ux_headingfont;
+	font-weight: 500;
+	a{
+		font-size: 16px;
+	}
+	button{
+		font-size: 20px;
+		svg{
+			height: 18px;
+			width: 18px;
+		}
+	}
+}
+
+.document-grid{
+	gap: 1rem;
+	.slds-col{
+		font-size: 13px;
+		font-weight: 400;
+		min-height: 38px;
+		border-radius: 4px;
+		border: 1px solid $ux_input-border;
+		color: $ux_primary-dark;  
+		background-color: $ux_disabled;
+		align-items: center;
+		img{
+			height: 16px;
+			margin: 5px;
+		}
+		.d-flex{
+			align-items: center; 
+		} 
+	}
+}
+.pills-section{
+	font-size: 13px;
+	font-weight: 400;
+	min-height: 38px;
+	border-radius: 4px;
+	border: 1px solid $ux_input-border;
+	background-color: $ux_disabled;
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+    padding: 0 0.5rem;
+}
+.chart-cards{
+	.slds-card__body{
+		min-height: 330px;
+	}
+}
+
+
+
+.btn-selected{
+	color: $ux_white;
+	font-weight: 600;
+	background: linear-gradient(180deg, $ux_secondary-color 0%, $ux_primary-color 100%);
+	box-shadow: 0px 7px 14px rgba(8, 34, 72, 0.25);
+}

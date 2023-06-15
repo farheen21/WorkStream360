@@ -41,7 +41,7 @@ export class SidebarComponent {
       console.log(pageName)
       break;
     case 'time-management':
-    this.router.navigateByUrl('/time-management');
+    this.router.navigateByUrl('/timecards');
     console.log(pageName)
     break;
     case 'projects':

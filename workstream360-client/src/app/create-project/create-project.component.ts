@@ -8,10 +8,11 @@ import { AddResourceToProjectComponent } from '../add-resource-to-project/add-re
 import { ProjectUpdateFields } from '../Modal/update_project_budget';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 
+
 @Component({
   selector: 'app-create-project',
   templateUrl: './create-project.component.html',
-  styleUrls: ['./create-project.component.scss']
+  styleUrls: ['./create-project.component.scss'],
 })
 export class CreateProjectComponent implements OnInit{
   isStatus : boolean =  true;
@@ -26,7 +27,10 @@ export class CreateProjectComponent implements OnInit{
   remainingBudget: number = 0;
   burnedHours: number = 0;
   allocatedResources: any[] = [];
-
+  isProjectSaved: boolean = false;
+  isProjectPublished : boolean = false;
+  isResourceAdd : boolean = false;
+  showToast: boolean = false;
 
   constructor(private formBuilder: FormBuilder , private projectService : ProjectService , private resourceService: ResourceService) { }
   
@@ -79,11 +83,20 @@ export class CreateProjectComponent implements OnInit{
   // Working fine
   onSubmit() {
     console.log("calling before invalid --->",this.createProjectForm.value);
+    this.isProjectSaved = true;
+    this.isProjectPublished = false
+
+    this.showToast = true; // Set showToast to true
+      setTimeout(() => {
+        this.showToast = false; // Hide the toast after a certain time
+      }, 5000);
+
     if (this.createProjectForm.invalid) {
       console.log(this.createProjectForm.value);
       console.log("validation of form")
       this.projectName = this.createProjectForm.get('projectName')?.value;
       console.log( "project name from parent ---> " , this.projectName)
+      this.isProjectSaved = true;
     }
   }
   
@@ -96,6 +109,13 @@ export class CreateProjectComponent implements OnInit{
       projectId => {
         console.log('Project added successfully. ID:', projectId);
         this.projectId = projectId;
+        this.isProjectPublished = true;
+        this.isProjectSaved = false;
+        this.showToast = true; // Set showToast to true
+      setTimeout(() => {
+        this.showToast = false; // Hide the toast after a certain time
+      }, 5000);
+       
       },
       error => {
         console.error('Failed to add project:', error);
@@ -251,6 +271,14 @@ export class CreateProjectComponent implements OnInit{
         totalBurnedHours: this.burnedHours
       };
       console.log("data from resources clicked",updatedFields);
+      this.isProjectSaved = false;
+      this.isProjectPublished = false
+      this.isResourceAdd = true;
+      this.showToast = true; // Set showToast to true
+      setTimeout(() => {
+        this.showToast = false; // Hide the toast after a certain time
+      }, 5000);
+
   
       this.updateBudgetData(updatedFields);
     }

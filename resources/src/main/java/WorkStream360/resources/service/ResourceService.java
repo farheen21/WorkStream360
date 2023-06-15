@@ -23,4 +23,6 @@ public interface ResourceService {
     List<String> getAllProjectManagers();
 
     List<String> getAllEngagementLeaders();
+
+    List<ResourceResponse> getAllResources();
 }

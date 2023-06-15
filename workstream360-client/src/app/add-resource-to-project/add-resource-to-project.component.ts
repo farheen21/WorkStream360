@@ -4,6 +4,8 @@ import { AddResourcetoProject } from '../Modal/resources_in_project_dto';
 import { ProjectService } from '../service/project.service';
 import { ResourceByName } from '../Modal/resource_by_name_dto';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { SharedDataService } from '../service/shared-data.service';
+
 
 @Component({
   selector: 'app-add-resource-to-project',
@@ -16,17 +18,17 @@ export class AddResourceToProjectComponent {
   
   @Output() addResourceClicked = new EventEmitter<void>();
   @Output() allocatedBudgetChanged = new EventEmitter<number>();
-  @Output() burnedHoursChanged = new EventEmitter<number>();
-
+  @Output() burnedHoursChanged = new EventEmitter<number>();@Output() 
+ 
   AddReosurctoProjectForm!: FormGroup;
   resources: AddResourcetoProject[] = [];
   isModalOpen = false;
   resourceControl = new FormControl();
 
   selectedRole: string = '';
-
-
-  constructor(private formBuilder: FormBuilder, private projectService: ProjectService) {
+  resourceId:number = 0;
+  
+  constructor(private formBuilder: FormBuilder, private projectService: ProjectService , private SharedDataService : SharedDataService) {
     this.resourceControl = this.formBuilder.control('', Validators.required);
 
     this.AddReosurctoProjectForm = this.formBuilder.group({
@@ -85,7 +87,8 @@ export class AddResourceToProjectComponent {
         burnedHours: 40, // Set default burned hours to 40
         assignmentStartDate: this.AddReosurctoProjectForm.value.startDate,
         assignmentEndDate: this.AddReosurctoProjectForm.value.endDate,
-        projectID: this.projectId
+        projectID: this.projectId ,
+        resourceId : this.resourceId
       };
 
       this.resources.push(resource);
@@ -95,6 +98,8 @@ export class AddResourceToProjectComponent {
           allocationId => {
             console.log('Resource added successfully. Allocation ID:', allocationId);
             // Do further operations or show success message
+            this.SharedDataService.setProjectId(resource.projectID)
+            console.log("Emitting Project id from resource cmp to shared data service--->",resource.projectID)
           },
           error => {
             console.error('Failed to add resource:', error);
@@ -133,7 +138,10 @@ export class AddResourceToProjectComponent {
       .subscribe(
         (response: ResourceByName) => {
           this.selectedRole = response.roleName;
+          this.resourceId = response.resourceId;
           console.log("Got the resource role --->", this.selectedRole)
+          console.log("Got the resource id --->", this.resourceId)
+
         },
         (error) => {
           console.error('Error occurred while searching for resource:', error);

@@ -1,1 +1,70 @@
-<p>resources works!</p>
+<div class="heading-block">
+    <h1 class="page-heading">Resources</h1>
+</div>
+<div class="filter-section flex flex-wrap justify-between mt-24">
+    <div class="flex">
+        <div class="w-300 mr-3">
+            <form [formGroup]="searchForm">
+                <input formControlName="searchTerm"  type="text" id="searchProject"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  block w-full p-2.5 dark:bg-gray-700"
+                    placeholder="Search Projects" placeholder="Search">
+            </form>
+        </div>
+        <button type="button"
+            class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm p-6 py-2 dark:hover:bg-blue-700" (click)="searchResources()">Search</button>
+    </div>
+    <div>
+        <button type="button"
+            class="text-white primary-button hover:bg-blue-700 font-medium rounded-md text-sm p-6 py-2.5 dark:hover:bg-blue-700" (click)=" navigateToCreateResource()">Create
+            Resource</button>
+    </div>
+</div>
+<div class="card mt-24">
+    <table class="w-full text-sm text-left text-gray-500 table-fixed">
+        <thead class="text-sm dark-grey">
+          <tr>
+            <th scope="col" class="">Resource Name</th>
+            <th scope="col" class="">Resource Role</th>
+            <th scope="col" class="">Reporting Manager</th>
+            <th scope="col" class="">Utilization</th>
+            <th scope="col" class="">Joining Date</th>
+            <th scope="col" class="">Experience</th>
+            <th scope="col" class="">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- *ngFor="let resource of resources" -->
+          <tr  *ngFor="let resource of filteredResources" class="">
+            <th scope="row" class="font-medium whitespace-nowrap">
+              <div class="whitespace-pre-wrap py-2">{{ resource.resourceFirstName }} {{ resource.resourceLastName }}</div>
+            </th>
+            <td class="">
+              <div class="whitespace-nowrap">{{ resource.resourceRole }}</div>
+            </td>
+            <td class="">
+              <div class="whitespace-nowrap">{{ resource.resourceReportingManager }}</div>
+            </td>
+            <td class="">
+              <div class="whitespace-nowrap">80%</div>
+            </td>
+            <td>
+              <div class="whitespace-nowrap">{{ resource.resourceJoiningDate | date: 'dd/MM/yyyy'}}</div>
+            </td>
+            <td>
+              <div class="whitespace-nowrap">{{ resource.resourceExperience }}</div>
+            </td>
+            <td class="">
+              <a class="" [routerLink]="['resource', resource.resourceId]" (click)="navigateToProfile(resource.resourceId)">View</a>
+            </td>
+          </tr>
+          <tr *ngIf="filteredResources.length === 0">
+            <td colspan="7" class="text-center">No data available.</td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- <div class="mt-4" *ngIf="filteredProjects.length === 0">
+    <div class="text-gray-500 text-center">
+      No data available.
+  </div> -->

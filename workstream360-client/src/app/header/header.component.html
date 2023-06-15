@@ -7,11 +7,11 @@
         <img src="../assets/menu.svg" alt="" />
       </button>
     </div>
-    <div class="header-right-content flex items-center justify-around">
-      <button aria-label="Toggle Sidebar" class="px-5">
+    <div class="header-right-content flex items-center justify-end mr-4">
+      <!-- <button aria-label="Toggle Sidebar" class="px-5">
         <img src="../assets/app_launcher.svg" alt="" />
-      </button>
-      <button  aria-label="Toggle Sidebar" class="px-5">
+      </button> -->
+      <button  aria-label="Toggle Sidebar" class="mr-8">
         <img src="../assets/notification.svg" alt="" />
       </button>
        <div>
@@ -44,7 +44,7 @@
         [class.hidden]="!isDropdownOpen" [attr.aria-orientation]="'vertical'" [attr.aria-labelledby]="'menu-button'" tabindex="-1">
           <div class="py-1" role="none">
             <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-            <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Profile</a>
+            <a  class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0" (click)="navigateToProfile()">Profile</a>
             <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Setting</a>
           </div>
           <div class="py-1" role="none">

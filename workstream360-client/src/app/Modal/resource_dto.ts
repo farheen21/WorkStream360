@@ -1,5 +1,6 @@
 
 export interface Resource {
+     resourceId: number;
      resourceFirstName: string;
      resourceLastName: string;
      resourcePhoneNumber: number;

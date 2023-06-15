@@ -68,6 +68,8 @@ public class ResourceServiceImpl implements ResourceService {
         log.info("Getting the resource information for product id: {}" , resourceId);
         Resource resource = resourceRepository.findById(resourceId).orElseThrow();
         ResourceResponse resourceResponse = new ResourceResponse();
+        ResourceRole resourceRole = resource.getResource_Role();
+        resourceResponse.setResourceRole(resourceRole.getResourceRole());
         copyProperties(resource , resourceResponse);
         return resourceResponse;
     }
@@ -83,44 +85,13 @@ public class ResourceServiceImpl implements ResourceService {
             ResourceByName resourceByName = new ResourceByName();
             resourceByName.setResourceName(resourceFirstName + " " + resourceLastName);
             resourceByName.setRoleName(roleName);
+            resourceByName.setResourceId(resource.getResourceId());
             return resourceByName;
         } else {
             return null;
         }
     }
 
-
-//
-
-
-//    @Override
-//    public List<String> getAllProjectManagers() {
-//        Long projectManagerRoleId = 1L; // Assuming the role ID for "Project Manager" is 1
-//        List<Resource> projectManagers = resourceRepository.findByResource_resource_Role(projectManagerRoleId);
-//
-//        List<String> projectManagerNames = new ArrayList<>();
-//        for (Resource manager : projectManagers) {
-//            String fullName = manager.getResourceFirstName() + " " + manager.getResourceLastName();
-//            projectManagerNames.add(fullName);
-//        }
-//
-//        return projectManagerNames;
-//    }
-
-
-
-//    @Override
-//    public List<String> getAllProjectManagers() {
-//        List<Resource> projectManagers = resourceRepository.findByResource_Role_ResourceRoleId(PROJECT_MANAGER_ROLE_ID);
-//
-//        List<String> projectManagerNames = new ArrayList<>();
-//        for (Resource manager : projectManagers) {
-//            String fullName = manager.getResourceFirstName() + " " + manager.getResourceLastName();
-//            projectManagerNames.add(fullName);
-//        }
-//
-//        return projectManagerNames;
-//    }
 
     private static final long PROJECT_MANAGER_ROLE_ID = 1;
     private static final long Engagement_Leader_ROLE_ID = 7;
@@ -152,6 +123,40 @@ public class ResourceServiceImpl implements ResourceService {
         return engagementLeaderNames;
     }
 
+//    @Override
+//    public List<ResourceResponse> getAllResources() {
+//        log.info("Getting all resources...");
+//        List<Resource> resources = resourceRepository.findAll();
+//        List<ResourceResponse> resourceResponses = new ArrayList<>();
+//
+//        for (Resource resource : resources) {
+//            ResourceResponse resourceResponse = new ResourceResponse();
+//            copyProperties(resource, resourceResponse);
+//            resourceResponses.add(resourceResponse);
+//        }
+//
+//        return resourceResponses;
+//    }
+
+    @Override
+    public List<ResourceResponse> getAllResources() {
+        log.info("Getting all resources...");
+        List<Resource> resources = resourceRepository.findAll();
+        List<ResourceResponse> resourceResponses = new ArrayList<>();
+
+        for (Resource resource : resources) {
+            ResourceResponse resourceResponse = new ResourceResponse();
+            copyProperties(resource, resourceResponse);
+
+            // Retrieve the resource role from the relationship
+            ResourceRole resourceRole = resource.getResource_Role();
+            resourceResponse.setResourceRole(resourceRole.getResourceRole());
+
+            resourceResponses.add(resourceResponse);
+        }
+
+        return resourceResponses;
+    }
 
 
 }
